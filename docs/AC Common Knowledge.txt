@@ -1,0 +1,1122 @@
+═══════════════════════════════════════════════════════════════
+                    AC COMMON KNOWLEDGE
+          Diagnostic & Troubleshooting Reference
+═══════════════════════════════════════════════════════════════
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. HOW TO DIAGNOSE BAD CAPACITOR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHAT IT DOES:
+The capacitor stores electrical energy to give the compressor and fan motor an extra boost to start (start capacitor) or to keep them running smoothly (run capacitor).
+
+SYMPTOMS OF FAILURE:
+• Compressor or fan hums but won't start
+• Compressor starts slowly or struggles
+• AC works intermittently — starts sometimes, not others
+• Compressor shuts off on thermal overload
+• Bulging, leaking, or corroded capacitor casing
+• Burning smell from the outdoor unit
+
+HOW TO DIAGNOSE:
+1. Turn off power at the breaker and outdoor disconnect.
+2. Discharge the capacitor — use an insulated screwdriver to bridge the terminals (C, FAN, HERM). You may see a spark.
+3. Disconnect the wires (take a photo first for correct wiring).
+4. Set multimeter to MFD (microfarads) or capacitance mode.
+5. Measure across:
+   - C to HERM = compressor run capacitor
+   - C to FAN = fan motor run capacitor
+6. Compare reading to the rating printed on the capacitor.
+7. A good capacitor reads within ±6% of its rated value.
+8. A bad capacitor reads significantly low (e.g., 20 MFD rated, reads 5 MFD) or zero.
+
+REPLACEMENT:
+• Match the MFD rating and voltage rating exactly (e.g., 40 MFD 370V)
+• Dual run capacitors have 3 terminals (C, FAN, HERM) — wire exactly as before
+• Single run capacitors have 2 terminals
+• Always discharge before touching
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+2. HOW TO DIAGNOSE WEAK COMPRESSOR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHAT IT DOES:
+The compressor pumps refrigerant through the system, compressing low-pressure vapor into high-pressure vapor.
+
+SYMPTOMS OF WEAKNESS:
+• AC cools but not as well as before
+• Both high and low side pressures are closer together than expected
+• Compressor draws lower amperage than RLA on nameplate
+• After shutdown, high and low pressures equalize very quickly (within seconds)
+• Compressor runs continuously but doesn't reach target temperature
+• Compressor is unusually hot to touch
+• Oil discoloration (dark brown or black)
+
+HOW TO DIAGNOSE:
+1. Check running amperage with a clamp meter on the common wire.
+   - Below RLA = weak compressor (not pumping efficiently)
+   - At or above RLA = compressor working, problem elsewhere
+2. Measure high and low side pressures while running.
+   - If suction is high and discharge is low (closer together than normal), the compressor valves are worn.
+3. Pressure equalization test:
+   - Run the system for 10 minutes.
+   - Turn off the compressor.
+   - Time how long it takes for high and low pressures to equalize.
+   - Normal: 1-3 minutes (through the metering device)
+   - Bad: Equalizes in seconds = compressor valves leaking
+4. Check compressor oil color through the service port:
+   - Clear/pale yellow = good
+   - Dark brown/black = internal damage
+5. Check winding resistance (C to R, C to S, R to S):
+   - C to R + C to S should approximately equal R to S
+   - Open winding = failed compressor
+   - Shorted winding = very low resistance
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+3. HOW TO DIAGNOSE WEAK FAN RPM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SYMPTOMS:
+• Condenser fan spins slowly or struggles to start
+• High head pressure (condenser can't reject heat)
+• Compressor overheating or tripping on thermal overload
+• Fan motor is hot to touch
+• Fan makes humming or grinding noise
+• Fan wobbles or vibrates
+
+HOW TO DIAGNOSE:
+1. Visual check: Watch the fan spin with power on.
+   - Slow start or struggles = bad capacitor or failing motor
+   - Wobbles = bent blade or bad bearings
+2. Check the fan capacitor (separate from compressor capacitor).
+   - Test with multimeter in MFD mode
+   - Replace if out of spec
+3. Check fan motor amperage with clamp meter.
+   - Compare to motor nameplate FLA
+   - Over-amp = motor struggling (bad bearings, windings)
+   - Under-amp = motor winding open or partially shorted
+4. Spin the fan by hand (power off):
+   - Should spin freely for several rotations
+   - Rough or gritty = bad bearings
+   - Doesn't spin freely = motor seized
+5. Check the fan blade:
+   - Bent blades cause vibration and reduced airflow
+   - Clean dirty blades (dirt buildup reduces efficiency)
+
+REPLACEMENT:
+• Match HP, RPM, shaft size, rotation direction, and voltage
+• Most condenser fans are 1/4 HP, 825-1100 RPM
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+4. HOW TO DIAGNOSE BAD FILTER (FILTER DRIER)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHAT IT DOES:
+The filter drier removes moisture and contaminants from the refrigerant. It's installed on the liquid line between the condenser and expansion valve.
+
+SYMPTOMS OF CLOGGED FILTER:
+• Low suction pressure AND low head pressure (starved evaporator)
+• Temperature drop across the filter drier (measure before and after)
+• Frost or ice forming on the filter drier
+• Bubbles in the sight glass (moisture indicator)
+• Poor cooling performance
+• Expansion valve starving
+
+HOW TO DIAGNOSE:
+1. Measure temperature before and after the filter drier.
+   - Normal: Less than 1°C (2°F) difference
+   - Clogged: 3°C+ (5°F+) temperature drop
+2. Check for frost or ice on the filter drier while running.
+   - Frost = restriction inside the filter
+3. Touch the filter drier (carefully):
+   - If one side is noticeably colder than the other, it's restricted
+4. Check the sight glass (if installed after the filter):
+   - Bubbles = possible restriction upstream
+   - Clear = filter is likely OK
+
+REPLACEMENT:
+• Recover refrigerant first (do not vent)
+• Braze out old filter, braze in new filter
+• Use nitrogen flow during brazing to prevent oxidation
+• Evacuate the system to 500 microns
+• Recharge by weight per manufacturer specs
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+5. IS IT POSSIBLE TO CHANGE COMPRESSOR OIL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+YES, but it depends on the compressor type:
+
+HERMETIC/SEMI-HERMETIC COMPRESSORS:
+• Can drain oil from the service port or oil drain plug
+• Add new oil through the suction port or oil fill port
+• Measure old oil quantity first, add same amount of new oil
+• POE oil absorbs moisture rapidly — minimize air exposure time
+• Use the correct oil type for the refrigerant:
+  - R-134a: PAG 46/100 (automotive) or POE
+  - R-22: Mineral Oil (MO) or Alkylbenzene (AB)
+  - R-410A/R-32: POE (Polyolester)
+
+SCROLL COMPRESSORS:
+• Most are sealed — no oil drain port
+• Oil change requires compressor removal and flipping to drain
+• Some have oil service ports — check manufacturer specs
+
+WHEN TO CHANGE:
+• Oil is dark brown or black (burnout contamination)
+• After a compressor burnout (acid contamination)
+• After flushing the system due to contamination
+
+HOW TO CHECK OIL:
+1. Take a small sample from the compressor oil port
+2. Put in a clean glass vial
+3. Compare color to a chart:
+   - Clear/pale yellow = good
+   - Amber/honey = monitor
+   - Dark brown = replace
+   - Black = burnout — full system flush needed
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+6. HOW TO KNOW THE LEVEL OF COMPRESSOR OIL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+METHODS:
+
+1. SIGHT GLASS (if equipped):
+   • Some compressors have a sight glass on the crankcase
+   • Oil should be visible at the mid-point or higher
+   • Low oil level = possible leak or oil logged in evaporator
+
+2. OIL DIPSTICK (if equipped):
+   • Some semi-hermetic compressors have a dipstick
+   • Check with system off and oil settled
+
+3. DRAIN AND MEASURE:
+   • Close the liquid line service valve
+   • Run the compressor until it pumps down
+   • Drain oil from the compressor into a clean container
+   • Measure the quantity
+   • Refill with the same amount of fresh oil
+
+4. VISUAL INSPECTION:
+   • After recovering refrigerant, remove the compressor
+   • Tip and drain oil into a clean container
+   • Measure quantity
+   • Compare to manufacturer's oil charge specification
+
+5. ESTIMATION BY SYSTEM SIZE:
+   • Most residential systems hold 1-3 liters of oil
+   • The compressor nameplate often lists the oil charge
+   • If oil was lost (leak), add the amount specified on the nameplate
+
+IMPORTANT:
+• POE oil is hygroscopic — absorbs moisture from air in minutes
+• Keep oil containers sealed until use
+• Never leave the system open to atmosphere for more than 15 minutes
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+7. HOW TO USE R-11 TO FLUSH/CLEAN THE SYSTEM
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+NOTE: R-11 (CFC-11) is a controlled substance. In many countries it is banned or heavily restricted. Consider alternatives like R-141b-based flush solvents or proprietary AC flush products.
+
+PURPOSE:
+Remove oil residue, acid, sludge, and contaminants from the system after a compressor burnout or contamination.
+
+STEPS:
+1. Recover all refrigerant from the system (do not vent).
+2. Remove the compressor and filter drier.
+3. Disconnect the evaporator and condenser coils.
+4. Pour R-11 liquid into each component:
+   - Condenser: pour in one end, collect from the other
+   - Evaporator: same process
+   - Liquid line and suction line: flush individually
+5. Use compressed air or nitrogen (low pressure, 50-100 PSIG) to push the R-11 through.
+6. Collect the waste flush liquid in a clean container.
+7. Repeat until the flush liquid runs clear.
+8. Allow components to dry (R-11 evaporates quickly).
+9. Install new filter drier.
+10. Reassemble and braze with nitrogen flowing.
+11. Evacuate to 500 microns.
+12. Recharge with virgin refrigerant.
+
+ALTERNATIVES TO R-11:
+• R-141b based flush solvents (like Rx11-Flush, QwikShot)
+• Proprietary AC system flush products
+• These are less regulated and effective for most contamination
+
+SAFETY:
+• R-11 is heavier than air — work in ventilated areas
+• Wear gloves and safety glasses
+• Do not mix with different refrigerant types
+• Dispose of waste flush liquid properly (hazardous waste)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+8. HOW TO FLUSH THE SYSTEM USING NITROGEN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+PURPOSE:
+Nitrogen flushing serves two purposes:
+1. Pressure testing for leaks
+2. Pushing out moisture, debris, and residual flush solvents
+
+FOR PRESSURE/LEAK TESTING:
+1. Recover all refrigerant.
+2. Connect nitrogen cylinder with a regulator.
+3. Set regulator to the test pressure:
+   - R-134a systems: 150-200 PSIG
+   - R-22 systems: 200-250 PSIG
+   - R-410A systems: 400-600 PSIG
+4. Connect to the suction service port.
+5. Open the valve and pressurize the system.
+6. Close the nitrogen valve and disconnect.
+7. Apply soap bubbles to all joints, connections, and suspected areas.
+8. Monitor the gauge — pressure drop indicates a leak.
+9. Let the system hold pressure for 15-30 minutes minimum.
+
+FOR FLUSHING/CLEANING:
+1. After using a liquid flush solvent (R-11 or alternative), use nitrogen to push out remaining solvent.
+2. Set nitrogen regulator to 50-100 PSIG (low pressure).
+3. Connect to one end of the component being flushed.
+4. Open nitrogen valve — the solvent/debris will be pushed out the other end.
+5. Continue until clean gas comes out (no liquid or moisture).
+6. Repeat for each component: condenser, evaporator, lines.
+
+FOR MOISTURE REMOVAL:
+1. After evacuating, if moisture is suspected, nitrogen can help.
+2. Pressurize with nitrogen, hold for 10 minutes, then evacuate again.
+3. Repeat the nitrogen/evacuation cycle 2-3 times for severe moisture.
+
+IMPORTANT:
+• Always use dry, oil-free nitrogen (industrial grade)
+• Never use compressed shop air (contains moisture and oil)
+• Use a regulator — never connect a nitrogen cylinder directly
+• Vent nitrogen to atmosphere — it's not a refrigerant
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+9. WHAT TO DO WHEN AC BLOWS WARM AIR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DIAGNOSIS FLOW:
+
+Step 1: Check basics
+• Is the thermostat set correctly? (Cool mode, temp below room temp)
+• Is the fan set to AUTO (not ON — ON blows air even when not cooling)
+• Are all vents open and unblocked?
+
+Step 2: Check the outdoor unit
+• Is the compressor running? (Listen for humming/vibration)
+• Is the condenser fan spinning?
+• Is the condenser coil clean? (No debris, leaves, dirt)
+• Is there adequate clearance around the unit? (60cm minimum)
+
+Step 3: Check refrigerant pressures
+• Connect gauges to suction and discharge ports
+• Low suction + low head = low refrigerant charge
+• Low suction + high head = restriction (filter drier, TXV, orifice)
+• High suction + low head = compressor failure
+• Both equalized while running = compressor or TXV failure
+
+Step 4: Check the expansion device
+• Is the TXV sensing bulb properly mounted and insulated?
+• Is the orifice tube clogged?
+
+Step 5: Check airflow
+• Is the indoor filter clean?
+• Is the evaporator coil clean?
+• Is the blower motor running at correct speed?
+
+MOST COMMON CAUSES (in order):
+1. Low refrigerant charge (leak)
+2. Dirty condenser coil
+3. Failed compressor
+4. Clogged filter drier
+5. Failed expansion valve
+6. Dirty evaporator coil
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+10. WHAT TO DO WHEN COMPRESSOR SHORT CYCLES ON AND OFF
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHAT IS SHORT CYCLING:
+The compressor turns on, runs for a few seconds to a minute, then shuts off. This repeats continuously.
+
+CAUSES AND FIXES:
+
+1. LOW REFRIGERANT CHARGE
+   • Low pressure switch opens when pressure drops too low
+   • Compressor shuts off, pressure rises slightly, switch closes, compressor restarts
+   • FIX: Check for leaks, repair, evacuate, recharge
+
+2. HIGH PRESSURE SAFETY TRIPPING
+   • High head pressure causes the high-pressure switch to open
+   • Compressor shuts off, pressure drops, switch closes, compressor restarts
+   • FIX: Clean condenser, check fan, check for overcharge
+
+3. FAULTY PRESSURE SWITCH
+   • Switch opens at incorrect pressure
+   • FIX: Test switch with manifold gauges, replace if faulty
+
+4. COMPRESSOR OVERLOAD TRIPPING
+   • Thermal overload inside the compressor opens when too hot
+   • FIX: Check amperage, check ventilation, check capacitor
+
+5. ELECTRICAL ISSUE
+   • Loose wire, bad relay, or failing contactor
+   • FIX: Check all electrical connections, test relay and contactor
+
+6. OVERCHARGED SYSTEM
+   • Too much refrigerant causes high pressure cycling
+   • FIX: Recover excess refrigerant
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+11. WHAT TO DO WHEN EVAPORATOR COIL IS FREEZING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+(Split and Window Units)
+
+WHAT IT LOOKS LIKE:
+Ice or frost forms on the evaporator coil (indoor coil), suction line, or even the compressor. The AC may blow very cold air initially, then warm air as ice blocks airflow.
+
+CAUSES AND FIXES:
+
+1. LOW REFRIGERANT CHARGE (Most Common)
+   • Low refrigerant = low evaporator pressure = very low coil temperature = freezing
+   • FIX: Check for leaks, repair, evacuate, recharge by weight
+
+2. DIRTY AIR FILTER (Split Units)
+   • Restricted airflow over the evaporator causes the coil to drop below freezing
+   • FIX: Replace or clean the air filter
+
+3. DIRTY EVAPORATOR COIL
+   • Same as dirty filter — restricted airflow
+   • FIX: Clean the evaporator coil with no-rinse coil cleaner
+
+4. FAN MOTOR NOT RUNNING OR SLOW (Split Units)
+   • No airflow = coil freezes
+   • FIX: Check fan motor, capacitor, and wiring
+
+5. EXPANSION VALVE STUCK OPEN (Split Units)
+   • Too much refrigerant enters the evaporator, drops pressure too low
+   • FIX: Replace TXV
+
+6. ORIFICE TUBE PARTIALLY CLOGGED
+   • Creates a restriction that drops pressure
+   • FIX: Replace orifice tube
+
+7. WINDOW UNIT — BLOCKED REAR GRILLE
+   • Outdoor air intake blocked by debris or installation
+   • FIX: Clear obstructions, ensure proper installation angle (slight tilt outward)
+
+8. WINDOW UNIT — THERMOSTAT SENSOR ISSUE
+   • Sensor not sensing room temp correctly, runs continuously
+   • FIX: Reposition sensor near the evaporator inlet
+
+NOTE: After fixing, the ice must fully melt before restarting.
+• Turn the AC to FAN ONLY mode to melt ice faster
+• Or turn off completely and wait 2-4 hours
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+12. WHAT TO DO WHEN CONDENSER COIL IS DIRTY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SYMPTOMS:
+• High head pressure (discharge pressure above normal range)
+• Compressor working harder, drawing more amperage
+• Reduced cooling capacity
+• Compressor may trip on high pressure safety
+• Hot air blowing from the outdoor unit feels weak
+
+HOW TO CLEAN:
+
+1. Turn off power at the breaker and outdoor disconnect.
+
+2. Remove large debris by hand:
+   • Leaves, grass, plastic bags, etc.
+   • Clear vegetation within 60cm (2 feet) of the unit
+
+3. Clean the fins:
+   • Use a garden hose (NOT a pressure washer)
+   • Spray from the inside out (push dirt out the way it came)
+   • Spray at a slight angle to avoid bending fins
+   • Use condenser coil cleaner spray for heavy buildup
+   • Let the cleaner foam sit for 10-15 minutes
+   • Rinse thoroughly from inside out
+
+4. Straighten bent fins:
+   • Use a fin comb (available at HVAC supply stores)
+   • Match the fins-per-inch (FPI) to the comb
+   • Gently straighten bent fins for proper airflow
+
+5. Check the base:
+   • Remove any standing water or debris from the base pan
+   • Ensure the drain holes are clear
+
+PREVENTION:
+• Clean the condenser every 6 months (before summer and after sand/dust storms)
+• Trim vegetation around the unit
+• Don't store items on or near the condenser
+• Consider a condenser coil guard if in a high-debris area
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+13. WHAT TO DO WHEN AC TRIPS THE BREAKER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DIAGNOSIS:
+
+1. COMPRESSOR DRAWING EXCESSIVE AMPERAGE
+   • Check running amps with clamp meter on each leg
+   • Compare to RLA on the compressor nameplate
+   • Over-amp = compressor failing (locked rotor, shorted windings)
+   • FIX: May need compressor replacement
+
+2. SHORT CIRCUIT IN WIRING
+   • Check for damaged, melted, or bare wires
+   • Look for burn marks at connections
+   • FIX: Repair or replace damaged wiring
+
+3. FAULTY RUN CAPACITOR
+   • A bad capacitor can cause the compressor to draw high amps
+   • FIX: Test and replace capacitor
+
+4. GROUND FAULT
+   • Compressor windings shorted to ground
+   • Test: Measure resistance from each terminal to ground (should be infinite/MΩ)
+   • Low resistance = ground fault = replace compressor
+
+5. BREAKER UNDERSIZED
+   • Check the breaker size vs the unit's electrical requirements
+   • FIX: Install the correct breaker size per NEC/local codes
+
+6. DIRTY CONDENSER
+   • High head pressure = compressor works harder = higher amps
+   • FIX: Clean the condenser coil
+
+7. LOW VOLTAGE
+   • Voltage drop at the compressor terminals
+   • Test: Measure voltage at the contactor while compressor is running
+   • Should be within ±10% of nameplate voltage
+   • FIX: Check wire size, connections, and utility supply
+
+SAFETY:
+• If the breaker trips repeatedly, do NOT keep resetting it
+• Find and fix the root cause first
+• A tripping breaker prevents fire and equipment damage
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+14. WHAT TO DO WHEN COMPRESSOR WON'T START
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DIAGNOSIS FLOW:
+
+1. CHECK POWER
+   • Is the breaker on?
+   • Is the outdoor disconnect on?
+   • Is there voltage at the contactor? (Use multimeter)
+   • Is the thermostat calling for cooling?
+
+2. CHECK THE CONTACTOR
+   • Is the contactor pulled in? (24V coil should be energized)
+   • If not: check thermostat signal, check 24V transformer
+   • If contactor is in but no power passes: burned contacts
+
+3. CHECK PRESSURE SAFETY SWITCHES
+   • Low pressure switch: opens if refrigerant is too low
+   • High pressure switch: opens if pressure is too high
+   • Some systems have a manual reset button
+   • Bypass temporarily to test (only for diagnosis, not operation)
+
+4. CHECK CAPACITOR
+   • Humming but not starting = bad start/run capacitor
+   • Test with multimeter in MFD mode
+
+5. CHECK COMPRESSOR WINDINGS
+   • Measure resistance:
+     - C to R (run winding): low resistance (1-20 ohms depending on size)
+     - C to S (start winding): higher resistance (3-30 ohms)
+     - R to S = C-R + C-S (approximately)
+   - Open winding = failed compressor
+   - All readings very low = shorted windings
+
+6. LOCKED ROTOR
+   • Compressor hums loudly and draws LRA but doesn't start
+   • Try a hard start kit (start capacitor + potential relay)
+   • If it still won't start = mechanically locked = replace compressor
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+15. WHAT TO DO WHEN AC MAKES LOUD NOISE FROM COMPRESSOR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TYPES OF NOISE:
+
+1. KNOCKING / BANGING
+   • Cause: Broken internal components (piston, valve, connecting rod)
+   • FIX: Replace compressor — internal damage is not repairable
+
+2. BUZZING / HUMMING (Loud)
+   • Cause: Locked rotor, bad capacitor, or loose mounting
+   • FIX: Check capacitor, check mounting bolts, try hard start kit
+
+3. RATTLING
+   • Cause: Loose hardware, loose mounting bolts, loose sheet metal
+   • FIX: Tighten all bolts and screws, check rubber vibration mounts
+
+4. CLICKING (Rapid)
+   • Cause: Contactor chattering, compressor trying to start and failing
+   • FIX: Check capacitor, check voltage, check contactor
+
+5. HIGH-PITCHED SQUEALING
+   • Cause: Internal bearing failure, high pressure
+   • FIX: Check head pressure first, if normal = bearing failure = replace compressor
+
+6. VIBRATION / SHAKING
+   • Cause: Loose mounting, unbalanced fan blade, compressor internal wear
+   • FIX: Tighten mounts, check fan blade balance
+
+WHEN TO REPLACE:
+If the noise is internal to the compressor (knocking, banging, grinding), the compressor must be replaced. Internal repairs are not possible on hermetic compressors.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+16. WHAT TO DO WHEN EXPANSION VALVE IS STUCK
+(How to Know)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TYPES OF EXPANSION DEVICES:
+• TXV (Thermostatic Expansion Valve) — most common in split systems
+• EEV (Electronic Expansion Valve) — in modern/inverter systems
+• Orifice Tube / Capillary Tube — fixed metering, simpler systems
+
+HOW TO KNOW IF STUCK:
+
+STUCK CLOSED (No refrigerant flow):
+• Very low or zero suction pressure
+• Evaporator not cooling at all
+• No frost or condensation on the evaporator
+• Compressor may overheat (no refrigerant to cool it)
+• High head pressure (refrigerant backs up in condenser)
+• Liquid line is warm (hot liquid can't get through)
+
+STUCK OPEN (Too much refrigerant flow):
+• High suction pressure
+• Low head pressure
+• Poor cooling
+• Frost on the suction line and compressor
+• Pressures nearly equalized (similar high and low readings)
+• Compressor may short cycle on low superheat
+
+HOW TO TEST TXV:
+1. Check the sensing bulb:
+   • Must be firmly attached to the suction line
+   • Must be insulated from ambient air
+   • If loose or uninsulated, the TXV reads wrong temperature
+2. Warm the sensing bulb with your hand:
+   • Suction pressure should increase (valve opens)
+3. Cool the sensing bulb with ice:
+   • Suction pressure should decrease (valve closes)
+4. If pressure doesn't change with temperature = TXV stuck
+
+HOW TO TEST EEV:
+1. Check for error codes on the control board
+2. Use the service mode to manually open/close the valve
+3. If it doesn't respond = motor failure or wiring issue
+
+FIX:
+• TXV: Replace the valve (requires brazing, refrigerant recovery)
+• EEV: Replace the stepper motor or the entire valve assembly
+• Orifice tube: Pull out and replace (accessible from the liquid line)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+17. WHAT TO DO WHEN AC SMELLS MUSTY OR MOLDY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CAUSES:
+• Mold or mildew on the evaporator coil
+• Mold in the condensate drain pan
+• Mold in the ductwork
+• Dirty air filter
+• Standing water in the drain pan
+
+FIX:
+
+1. REPLACE THE AIR FILTER
+   • A dirty filter harbors bacteria and mold
+   • Use a fresh filter — consider an antimicrobial filter
+
+2. CLEAN THE EVAPORATOR COIL
+   • Use a no-rinse foaming coil cleaner
+   • The foam kills mold and bacteria
+   • Let it sit 10-15 minutes, then rinse if needed
+
+3. CLEAN THE CONDENSATE DRAIN
+   • Pour 1 cup of diluted bleach (1:16 ratio) or vinegar through the drain line
+   • This kills algae and mold in the drain
+   • Check the drain pan for standing water — clean and dry it
+
+4. TREAT WITH ANTIMICROBIAL SPRAY
+   • After cleaning, spray an antimicrobial treatment on the coil
+   • Products like "Frigi-Fresh" or "Coil-Shield" prevent regrowth
+
+5. CHECK DUCTWORK (for ducted systems)
+   • Mold in ducts requires professional cleaning
+   • UV light systems installed in the air handler can prevent future mold
+
+6. CHECK FOR WATER LEAKS
+   • Water pooling inside the unit promotes mold growth
+   • Ensure proper drainage and insulation
+
+PREVENTION:
+• Clean the evaporator every 3 months
+• Flush the condensate drain every 3 months
+• Replace the filter every 2-4 weeks during heavy use
+• Run the fan in AUTO mode, not ON (ON mode keeps the coil wet)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+18. WHAT TO DO WHEN HIGH SIDE PRESSURE IS TOO HIGH
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CAUSES AND FIXES:
+
+1. DIRTY CONDENSER COIL (Most Common)
+   • Can't reject heat efficiently
+   • FIX: Clean the condenser coil
+
+2. CONDENSER FAN NOT WORKING OR SLOW
+   • No airflow across the condenser
+   • FIX: Check fan motor, capacitor, wiring
+
+3. OVERCHARGED SYSTEM
+   • Too much refrigerant fills the condenser, reducing capacity
+   • FIX: Recover excess refrigerant
+
+4. NON-CONDENSABLES IN THE SYSTEM (Air)
+   • Air doesn't condense — takes up space in the condenser
+   • Usually after improper evacuation or leak
+   • FIX: Recover all refrigerant, evacuate properly, recharge with virgin refrigerant
+
+5. RESTRICTION IN LIQUID LINE
+   • Clogged filter drier, kinked line, or clogged orifice
+   • FIX: Check/replace filter drier, check for kinks
+
+6. HIGH AMBIENT TEMPERATURE
+   • At 45°C+ ambient, high pressure is expected
+   • Ensure the unit is rated for the ambient (T1, T2, or T3 rated)
+
+7. SUNLIGHT ON CONDENSER
+   • Direct sun increases condenser temperature
+   • FIX: Provide shade (but don't restrict airflow)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+19. WHAT TO DO WHEN LOW SIDE PRESSURE IS TOO LOW
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CAUSES AND FIXES:
+
+1. LOW REFRIGERANT CHARGE (Most Common)
+   • Not enough refrigerant in the system
+   • FIX: Check for leaks, repair, evacuate, recharge
+
+2. RESTRICTION IN THE LIQUID LINE
+   • Clogged filter drier, kinked tube, clogged orifice
+   • FIX: Check/replace filter drier, check for kinks
+
+3. TXV STUCK CLOSED
+   • No refrigerant entering the evaporator
+   • FIX: Replace TXV
+
+4. BLOCKED EVAPORATOR
+   • Ice on the coil, dirty coil, or blocked airflow
+   • FIX: Clean coil, check filter, check for ice
+
+5. LOW AMBIENT TEMPERATURE
+   • Running AC when it's cold outside lowers suction pressure
+   • Normal if ambient is below 18°C
+
+6. EVAPORATOR FAN NOT WORKING
+   • No airflow = coil gets too cold = pressure drops
+   • FIX: Check fan motor, capacitor, wiring
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+20. WHAT TO DO WHEN BOTH PRESSURES ARE EQUALIZED WHILE RUNNING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THIS IS A SERIOUS PROBLEM. It means the compressor is not creating a pressure difference between the high and low sides.
+
+CAUSES:
+
+1. COMPRESSOR VALVE FAILURE (Most Likely)
+   • Internal reed valves are worn or broken
+   • Compressor can't compress — acts like a bypass
+   • FIX: Replace the compressor
+
+2. TXV STUCK WIDE OPEN
+   • Refrigerant flows freely between high and low sides
+   • The compressor still works but can't maintain pressure difference
+   • FIX: Replace the TXV
+
+3. INTERNAL BYPASS IN COMPRESSOR
+   • Broken internal component allowing high-pressure gas to leak to suction
+   • FIX: Replace the compressor
+
+4. 4-WAY VALVE STUCK (Heat Pump Systems)
+   • The reversing valve is stuck in a bypass position
+   • FIX: Replace or repair the 4-way valve
+
+HOW TO CONFIRM:
+1. Run the system and note both pressures.
+2. If they are nearly equal (e.g., suction 80 PSIG and discharge 90 PSIG when they should be 30 and 200), the compressor is not working.
+3. Shut off the compressor.
+4. If pressures equalize within seconds (not minutes), compressor valves are confirmed bad.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+21. WHAT TO DO WHEN SUCTION LINE IS SWEATING HEAVILY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHAT IT MEANS:
+The suction line (large copper pipe) is cold enough to condense moisture from the air. This is normal to some extent, but heavy sweating indicates a problem.
+
+CAUSES:
+
+1. MISSING OR DAMAGED INSULATION (Most Common)
+   • The suction line should be insulated with foam insulation
+   • If insulation is missing, damaged, or torn, the cold pipe will sweat
+   • FIX: Replace or repair the insulation (3/4" wall closed-cell foam)
+
+2. LOW REFRIGERANT CHARGE
+   • Lower charge = lower suction pressure = colder suction line
+   • FIX: Check charge and correct
+
+3. OVERCOOLING
+   • System running too long or thermostat set too low
+   • The suction line gets very cold
+   • FIX: Adjust thermostat, check thermostat calibration
+
+4. HIGH SUPERHEAT
+   • The refrigerant is fully evaporating too early in the evaporator
+   • The remaining suction line acts as additional evaporator
+   • FIX: Check charge (undercharged), check TXV setting
+
+FIX FOR SWEATING:
+• Re-insulate the suction line with proper foam insulation
+• Use insulation tape at joints to prevent gaps
+• Ensure insulation is continuous from the evaporator to the compressor
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+22. IS IT NORMAL FOR AC TO COOL WHILE SUCTION AND LIQUID LINES NOT SWEATING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+SHORT ANSWER: Yes, it can be normal, depending on conditions.
+
+THE SUCTION LINE (Large Pipe):
+• Should be cool to the touch (10-18°C is normal)
+• Should have condensation (sweating) if insulation is missing and ambient is humid
+• If the suction line is insulated, you won't see sweating — this is correct
+• If uninsulated and not sweating in humid conditions, the line might be warm = problem
+
+THE LIQUID LINE (Small Pipe):
+• Should be warm to hot (30-50°C depending on ambient)
+• Should NOT sweat — it's on the high-pressure side
+• If the liquid line is sweating, it could indicate:
+  - Restriction before the sweating point (cold liquid expanding)
+  - Very low charge
+  - Subcooling is very high (overcharged)
+
+WHEN IT'S NORMAL:
+• Suction line insulated = no visible sweating = normal
+• Liquid line warm = normal
+• Both lines at expected temperatures = normal
+
+WHEN TO BE CONCERNED:
+• Suction line is warm (not cool) = low charge or restriction
+• Liquid line is cold or sweating = restriction or very low charge
+• Neither line has any temperature difference from ambient = system not working
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+23. WHAT TO DO WHEN DISCHARGE LINE IS NOT HOT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+THE DISCHARGE LINE (Small pipe leaving the compressor) should be hot:
+• Normal: 50-80°C (warm to very hot)
+• If it's not hot, something is wrong.
+
+CAUSES:
+
+1. COMPRESSOR NOT COMPRESSING
+   • Internal valve failure — gas bypasses internally
+   • The compressor runs but doesn't actually compress
+   • FIX: Replace the compressor
+
+2. LOW REFRIGERANT CHARGE
+   • Very low charge means the compressor has little to compress
+   • The discharge line may be warm but not hot
+   • FIX: Check for leaks, repair, recharge
+
+3. COMPRESSOR NOT RUNNING
+   • If the compressor isn't running, the line will be at ambient temperature
+   • FIX: Check why the compressor isn't starting (see compressor won't start)
+
+4. SYSTEM IN HEAT PUMP MODE (if applicable)
+   • In heating mode, the discharge line routing changes
+   • The line that's "discharge" in cooling may be "suction" in heating
+   • FIX: This is normal for heat pump operation
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+24. WHAT TO DO WHEN AC COOLS BUT COMPRESSOR NEVER SHUTS OFF
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CAUSES:
+
+1. THERMOSTAT SET TOO LOW
+   • If the room can never reach the set temperature, the compressor runs continuously
+   • FIX: Raise the thermostat setting
+
+2. UNDERSIZED SYSTEM
+   • The AC can't keep up with the heat load
+   • Common in extreme heat (45°C+) or if the unit is too small for the space
+   • FIX: This is a design issue — may need a larger unit
+
+3. LOW REFRIGERANT CHARGE
+   • System can't reach the target temperature due to reduced capacity
+   • FIX: Check charge, repair leaks, recharge
+
+4. DIRTY CONDENSER OR EVAPORATOR
+   • Reduced capacity means the system can't cool efficiently
+   • FIX: Clean both coils
+
+5. THERMOSTAT MALFUNCTION
+   • Thermostat never reaches set point (sensor issue)
+   • FIX: Replace or recalibrate the thermostat
+
+6. AIR LEAKS IN THE BUILDING
+   • Hot air infiltrating through gaps, poor insulation
+   • FIX: Seal leaks, improve insulation
+
+7. COMPRESSOR SHORT CYCLING (NOT shutting off completely)
+   • If the compressor clicks on and off rapidly, it may seem like it's running continuously
+   • FIX: Check pressure switches, check charge
+
+IS IT HARMFUL?
+• Continuous operation is not necessarily harmful if pressures and temperatures are normal
+• But it increases energy consumption and wear
+• The compressor should cycle off periodically under normal conditions
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+25. WHAT TO DO WHEN THERE IS MOISTURE IN THE SIGHT GLASS
+(How to Know)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHAT THE SIGHT GLASS TELLS YOU:
+
+CLEAR (No Bubbles):
+• Properly charged system
+• No significant moisture
+• Refrigerant is all liquid (subcooled)
+
+BUBBLES (Foamy/Stream):
+• Low refrigerant charge (most common)
+• OR restriction upstream (clogged filter drier)
+• OR moisture in the system (boiling at the restriction)
+
+MILKY/CLOUDY:
+• Moisture present in the refrigerant
+• The refrigerant has dissolved water
+• This is BAD — moisture causes acid, corrosion, and compressor damage
+
+OILY/FILMY:
+• Oil circulating in the system
+• Normal in small amounts after a charge
+• Excessive oil = compressor wear or oil logging
+
+HOW TO KNOW IF IT'S MOISTURE:
+1. The sight glass appears milky or cloudy (not just bubbles)
+2. Bubbles that don't clear after adding refrigerant
+3. Ice or frost on the filter drier (moisture freezing at the restriction)
+4. Acid test on compressor oil (turns pink/red with acid)
+
+FIX:
+1. Recover all refrigerant (it's contaminated with moisture)
+2. Replace the filter drier (it's saturated with moisture)
+3. Evacuate the system to 500 microns or lower
+4. If moisture is severe: do a triple evacuation
+   - Nitrogen pressurize → evacuate → repeat 3 times
+5. Recharge with virgin refrigerant
+6. Monitor the sight glass — should be clear after proper charge
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+26. WHAT TO DO WHEN AC VIBRATES EXCESSIVELY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CAUSES AND FIXES:
+
+1. LOOSE MOUNTING BOLTS
+   • Compressor or fan motor mounting bolts are loose
+   • FIX: Tighten all mounting bolts and screws
+   • Check rubber vibration isolators — replace if cracked or missing
+
+2. UNBALANCED FAN BLADE
+   • Bent or damaged fan blade causes vibration
+   • FIX: Straighten the blade or replace it
+
+3. LOOSE SHEET METAL
+   • Panels, covers, or housing vibrating
+   • FIX: Tighten all sheet metal screws
+
+4. LIQUID SLUGGING (SERIOUS)
+   • Liquid refrigerant entering the compressor (should be vapor only)
+   • Causes severe knocking and vibration
+   • FIX: Check TXV (stuck open), check superheat, check charge level
+
+5. COMPRESSOR INTERNAL DAMAGE
+   • Broken internal components (piston, valve, scroll)
+   • FIX: Replace the compressor
+
+6. RESONANCE
+   • The unit's vibration frequency matches the mounting surface
+   • FIX: Add rubber isolation pads, change mounting location
+
+7. PIPE VIBRATION
+   • Refrigerant pipes touching the structure or each other
+   • FIX: Add pipe clamps with rubber isolators, ensure pipes don't touch walls
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+27. WHAT TO DO IF THERE WAS A LEAK AND THE COMPRESSOR PULLED SOME AIR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+WHY THIS IS A PROBLEM:
+When a system has a leak and loses refrigerant, the low pressure can cause the compressor to suck in outside air through the leak point. Air contains:
+• Nitrogen (78%)
+• Oxygen (21%) — reacts with refrigerant and oil
+• Moisture (variable) — causes acid and corrosion
+• CO2 and other gases
+
+Air in the system causes:
+• High head pressure (non-condensable gas in condenser)
+• Reduced cooling efficiency
+• Acid formation (moisture + refrigerant + oil = acid)
+• Compressor damage over time
+
+WHAT TO DO:
+
+1. FIND AND REPAIR THE LEAK
+   • Use electronic leak detector, UV dye, or soap bubbles
+   • Repair the leak (brazing, replace component, tighten fitting)
+
+2. RECOVER ALL REFRIGERANT
+   • The remaining refrigerant is contaminated with air
+   • Recover into a recovery cylinder (do not vent)
+   • This contaminated refrigerant should be sent for reclamation
+
+3. EVACUATE THE SYSTEM
+   • Connect a vacuum pump
+   • Evacuate to 500 microns or lower
+   • If moisture is suspected, do a triple evacuation:
+     - Nitrogen pressurize to 50 PSIG
+     - Hold 5 minutes
+     - Evacuate to 500 microns
+     - Repeat 3 times
+
+4. REPLACE THE FILTER DRIER
+   • The old filter has absorbed moisture from the air
+   • Install a new filter drier
+
+5. RECHARGE WITH VIRGIN REFRIGERANT
+   • Use a scale to weigh in the correct charge
+   • Do not reuse the recovered contaminated refrigerant
+
+6. CHECK THE OIL
+   • If the system was exposed to air for a long time, the oil may be contaminated
+   • Check oil color — if dark, consider oil change
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+28. WHAT ARE THE MATERIALS USED TO CLEAN COILS
+(Are They Safe for Longevity of the AC?)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+TYPES OF COIL CLEANERS:
+
+1. NO-RINSE FOAMING CLEANERS (Most Common)
+   • Examples: WEB Condenser Coil Cleaner, Nu-Calgon Evap Foam
+   • How it works: Spray foam dissolves dirt, drains into condensate pan
+   • Safe? YES — designed for AC coils, non-corrosive when used as directed
+   • Best for: Indoor evaporator coils (where rinsing is difficult)
+
+2. ALKALINE-BASED CLEANERS
+   • Examples: Coil Brite, CalClean
+   • How it works: Alkaline chemicals dissolve grease and grime
+   • Safe? YES if rinsed thoroughly — can damage aluminum if left on
+   • Best for: Heavily soiled outdoor condenser coils
+
+3. ACID-BASED CLEANERS
+   • Examples: Certain commercial-grade coil cleaners
+   • How it works: Acid dissolves oxidation and scale
+   • Safe? USE WITH CAUTION — can corrode aluminum fins if too strong or left too long
+   • Best for: Severe oxidation on condenser coils (not evaporators)
+   • Always rinse thoroughly
+
+4. WATER ONLY
+   • A garden hose with moderate pressure
+   • Safe? YES — the safest method
+   • Best for: Regular maintenance cleaning of condenser coils
+
+5. DETERGENT / SOAP SOLUTION
+   • Mild dish soap mixed with water
+   • Safe? YES — gentle on coils
+   • Best for: Lightly soiled coils, evaporator coils
+
+6. COMPRESSED AIR
+   • Blowing air through the fins to remove dust
+   • Safe? YES if pressure is low (under 100 PSIG)
+   • Best for: Dry dust on evaporator coils
+
+WHAT TO AVOID:
+• Pressure washers — WILL bend the thin aluminum fins permanently
+• Bleach — can corrode aluminum and copper
+• Household cleaning products — may contain chemicals that damage coils
+• Steel brushes — will destroy the soft aluminum fins
+• High-pressure water — same as pressure washer, bends fins
+
+ALUMINUM FIN SAFETY:
+AC coils are made of thin aluminum fins bonded to copper tubes. Aluminum is soft and reactive:
+• Acid can dissolve aluminum
+• Alkali can corrode aluminum if not rinsed
+• Always use products labeled "safe for aluminum coils"
+• Always rinse cleaners off thoroughly
+
+BEST PRACTICES:
+• Use no-rinse foaming cleaners for evaporators
+• Use water or mild alkaline cleaners for condensers
+• Always rinse condenser cleaners off with a garden hose
+• Clean coils every 3-6 months
+• Never use a pressure washer
+• Wear gloves and eye protection when using chemical cleaners
+
+
+═══════════════════════════════════════════════════════════════
+                      END OF GUIDE
+═══════════════════════════════════════════════════════════════
