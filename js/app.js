@@ -44,6 +44,17 @@ function interpolateReverse(ptData, psig) {
   return 0;
 }
 
+// Low-side pressure caps based on Qwen's real-world HVAC data
+// Above these = overcharged or system problem
+var LOW_SIDE_CAPS = {'R-22':75, 'R-410A':125, 'R-32':130, 'R-134a':40};
+
+function applyLoSideCap(rg, refName) {
+  var loCap = LOW_SIDE_CAPS[refName] || 100;
+  if (rg.loMin > loCap) rg.loMin = Math.round(loCap * 0.87);
+  if (rg.loMax > loCap) rg.loMax = loCap;
+  return rg;
+}
+
 // Interpolate operating ranges
 function interpRanges(ranges, ambC) {
   var loMin, loMax, hiMin, hiMax;
@@ -282,6 +293,11 @@ function updateAmbientAdvisor() {
   if (isNaN(ambC)) return;
   var rg = interpRanges(r.operatingRanges, ambC);
   var sp = interpStatic(r.staticPressure, ambC);
+  // Cap low-side to reflect real HVAC behavior: suction pressure is determined by
+  // indoor coil temperature (thermostat-controlled), NOT outdoor ambient.
+  // Qwen real-world max suction (at 5-7°C coil): R-22: 75, R-410A: 125, R-32: 130, R-134a: 40
+  // Above these = overcharged or system problem.
+  applyLoSideCap(rg, r.name);
   var loMid = (rg.loMin + rg.loMax) / 2, satTemp = interpolateReverse(r.pt, loMid);
   var hiMid = (rg.hiMin + rg.hiMax) / 2, condSatTemp = interpolateReverse(r.pt, hiMid);
   var heatLevel, heatColor, heatIcon;
@@ -400,9 +416,14 @@ function renderTargetPressures() {
   document.getElementById('targetContent').innerHTML = html;
 }
 
-// Compare chart
+// Compare charts — two separate charts: suction (flat) + discharge (rises with heat)
 function renderCompareChart() {
-  var canvas = document.getElementById('compareCanvas');
+  renderCompareSide('compareLoCanvas', 'low', currentLang === 'ar' ? 'ضغط الشفط (PSIG)' : 'Suction Pressure (PSIG)');
+  renderCompareSide('compareHiCanvas', 'high', currentLang === 'ar' ? 'ضغط التفريغ (PSIG)' : 'Discharge Pressure (PSIG)');
+}
+
+function renderCompareSide(canvasId, side, yLabel) {
+  var canvas = document.getElementById(canvasId);
   if (!canvas) return;
   var ctx = canvas.getContext('2d');
   var dpr = window.devicePixelRatio || 1;
@@ -412,17 +433,28 @@ function renderCompareChart() {
   var W = rect.width, H = rect.height;
   var padL = 70, padR = 20, padT = 30, padB = 50;
   var plotW = W - padL - padR, plotH = H - padT - padB;
-  var indoorC = parseFloat(document.getElementById('compareIndoorInput').value) || 24;
   var tMin = 18, tMax = 55;
   var colors = ['#00b4d8','#f4a261','#2a9d8f','#e63946'];
   var keys = ['r134a','r22','r410a','r32'];
   var labels = ['R-134a','R-22','R-410A','R-32'];
-  var indoorAdj = Math.round((indoorC - 24) * 1.2);
+  // Collect data points with low-side cap applied
   var allPts = keys.map(function(key) {
     var r = refrigerants[key];
-    return r.operatingRanges.map(function(d) { return {x: d[0], yMin: d[2] + indoorAdj, yMax: d[3] + indoorAdj}; });
+    return r.operatingRanges.map(function(d) {
+      var rg = {loMin: d[2], loMax: d[3], hiMin: d[4], hiMax: d[5]};
+      applyLoSideCap(rg, r.name);
+      if (side === 'low') return {x: d[0], yMin: rg.loMin, yMax: rg.loMax};
+      return {x: d[0], yMin: rg.hiMin, yMax: rg.hiMax};
+    });
   });
-  var pMin = 0, pMax = 200;
+  // Compute Y range
+  var allY = [];
+  allPts.forEach(function(pts) { pts.forEach(function(p) { allY.push(p.yMin); allY.push(p.yMax); }); });
+  var yMin = Math.min.apply(null, allY), yMax = Math.max.apply(null, allY);
+  var yPad = (yMax - yMin) * 0.1;
+  var pMin = Math.max(0, Math.floor((yMin - yPad) / 10) * 10);
+  var pMax = Math.ceil((yMax + yPad) / 10) * 10;
+  // Draw
   ctx.clearRect(0, 0, W, H);
   ctx.strokeStyle = '#2a3a4a'; ctx.lineWidth = 1;
   ctx.font = '11px Segoe UI'; ctx.fillStyle = '#8899aa';
@@ -439,18 +471,12 @@ function renderCompareChart() {
   }
   ctx.fillStyle = '#e0e8f0'; ctx.font = 'bold 12px Segoe UI';
   ctx.save(); ctx.translate(16, H/2); ctx.rotate(-Math.PI/2);
-  ctx.textAlign = 'center'; ctx.fillText(currentLang === 'ar' ? 'ضغط الشفط (PSIG)' : 'Suction Pressure (PSIG)', 0, 0); ctx.restore();
+  ctx.textAlign = 'center'; ctx.fillText(yLabel, 0, 0); ctx.restore();
   ctx.textAlign = 'center'; ctx.fillText(currentLang === 'ar' ? 'حرارة الخارج (°C)' : 'Outdoor Temp (°C)', W/2, H - 5);
   for (var di = 0; di < keys.length; di++) {
     var pts = allPts[di]; var color = colors[di];
-    ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.beginPath();
-    for (var i = 0; i < pts.length; i++) {
-      var x = padL + (pts[i].x - tMin) / (tMax - tMin) * plotW;
-      var yMid = padT + plotH - ((pts[i].yMin + pts[i].yMax) / 2 - pMin) / (pMax - pMin) * plotH;
-      if (i === 0) ctx.moveTo(x, yMid); else ctx.lineTo(x, yMid);
-    }
-    ctx.stroke();
-    ctx.strokeStyle = color; ctx.lineWidth = 1; ctx.globalAlpha = 0.15; ctx.beginPath();
+    // Fill band
+    ctx.strokeStyle = color; ctx.lineWidth = 1; ctx.globalAlpha = 0.12; ctx.beginPath();
     for (var i = 0; i < pts.length; i++) {
       var x = padL + (pts[i].x - tMin) / (tMax - tMin) * plotW;
       var y = padT + plotH - (pts[i].yMax - pMin) / (pMax - pMin) * plotH;
@@ -463,7 +489,16 @@ function renderCompareChart() {
     }
     ctx.closePath(); ctx.fillStyle = color; ctx.fill();
     ctx.globalAlpha = 1;
+    // Center line
+    ctx.strokeStyle = color; ctx.lineWidth = 2.5; ctx.beginPath();
+    for (var i = 0; i < pts.length; i++) {
+      var x = padL + (pts[i].x - tMin) / (tMax - tMin) * plotW;
+      var yMid = padT + plotH - ((pts[i].yMin + pts[i].yMax) / 2 - pMin) / (pMax - pMin) * plotH;
+      if (i === 0) ctx.moveTo(x, yMid); else ctx.lineTo(x, yMid);
+    }
+    ctx.stroke();
   }
+  // Legend
   var legY = padT + 5;
   for (var i = 0; i < labels.length; i++) {
     var lx = padL + 10 + i * 110;
@@ -561,6 +596,7 @@ function calcSystem() {
   var r = refrigerants[currentRef];
   var ambC = climate === 1 ? 24 : climate === 2 ? 30 : climate === 3 ? 38 : 48;
   var rg = interpRanges(r.operatingRanges, ambC);
+  applyLoSideCap(rg, r.name);
   var suctionPipe, liquidPipe;
   if (totalBTU <= 12000) { suctionPipe = '3/8"'; liquidPipe = '1/4"'; }
   else if (totalBTU <= 24000) { suctionPipe = '1/2"'; liquidPipe = '3/8"'; }
@@ -601,6 +637,7 @@ function calcDevice() {
   var chargeKey = r.name === 'R-410A' ? 'chargeR410A' : r.name === 'R-32' ? 'chargeR32' : 'chargeR134a';
   var charge = d[chargeKey] || d.chargeR410A;
   var rg = interpRanges(r.operatingRanges, 35);
+  applyLoSideCap(rg, r.name);
   var sysLabel = sysType === 'minisplit' ? 'Mini-Split' : sysType === 'package' ? 'Packaged Unit' : 'Split System';
   var html = '<h3>' + (isAr ? '📋 مواصفات المكوّنات — ' : '📋 Component Spec — ') + btu.toLocaleString() + ' BTU/h (' + tons.toFixed(1) + ' ' + (isAr ? 'طن' : 'Ton') + ') ' + sysLabel + '</h3>';
   html += '<h4 style="color:var(--accent);margin:15px 0 8px;">' + (isAr ? '🔧 الضاغط' : '🔧 Compressor') + '</h4>';
@@ -662,6 +699,7 @@ function renderDiagram() {
   var isAr = currentLang === 'ar';
   var ambC = parseFloat(document.getElementById('diagAmbInput').value) || 35;
   var rg = interpRanges(r.operatingRanges, ambC);
+  applyLoSideCap(rg, r.name);
   var loMid = (rg.loMin+rg.loMax)/2, hiMid = (rg.hiMin+rg.hiMax)/2;
   var evapT = Math.round(interpolateReverse(r.pt, loMid));
   var condT = Math.round(interpolateReverse(r.pt, hiMid));
@@ -856,13 +894,11 @@ document.querySelectorAll('.tab-btn').forEach(function(btn) {
 
 window.addEventListener('resize', function() {
   if (document.getElementById('tab-ptchart').classList.contains('active')) renderPTChart();
+  if (document.getElementById('tab-compare').classList.contains('active')) renderCompareChart();
 });
 
 syncPair('diagAmbSlider','diagAmbInput',function(){
   if (document.getElementById('tab-diagram').classList.contains('active')) renderDiagram();
-});
-syncPair('compareIndoorSlider','compareIndoorInput',function(){
-  if (document.getElementById('tab-compare').classList.contains('active')) renderCompareChart();
 });
 
 // PWA Service Worker registration

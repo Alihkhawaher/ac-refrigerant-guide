@@ -176,16 +176,12 @@
   <div class="tab-content" id="tab-compare">
     <div class="card" style="border:none;margin:0;padding:0;">
       <h2 data-en="📊 Refrigerant Comparison Charts" data-ar="📊 مخططات مقارنة المبردات">📊 Refrigerant Comparison Charts</h2>
-      <p style="color:var(--text-dim);font-size:0.85em;margin-bottom:10px;" data-en="Low-side pressure vs outdoor temperature for all 4 refrigerants." data-ar="ضغط الشفط مقابل حرارة الخارج لكل المبردات.">Low-side pressure vs outdoor temperature for all 4 refrigerants.</p>
-      <div class="slider-group">
-        <label data-en="🌡️ Indoor Temperature" data-ar="🌡️ حرارة الداخل">🌡️ Indoor Temperature</label>
-        <div class="slider-row">
-          <input type="range" id="compareIndoorSlider" min="18" max="40" value="24">
-          <input type="number" class="slider-num" id="compareIndoorInput" value="24">
-          <span class="slider-unit">°C</span>
-        </div>
-      </div>
-      <div class="chart-wrap" style="height:450px;"><canvas id="compareCanvas"></canvas></div>
+      <p style="color:var(--text-dim);font-size:0.85em;margin-bottom:15px;" data-en="Suction pressure is thermostat-controlled (relatively stable). Discharge pressure rises with outdoor heat." data-ar="ضغط الشفط يتحكّم فيه الثرمستات (ثابت نسبياً). ضغط التفريغ يرتفع مع حرارة الخارج.">Suction pressure is thermostat-controlled (relatively stable). Discharge pressure rises with outdoor heat.</p>
+      <h3 style="color:var(--accent);margin-bottom:8px;" data-en="🔵 Low Side (Suction) — Indoor Coil Temp" data-ar="🔵 المنخفض (الشفط) — حرارة ملف المبخر">🔵 Low Side (Suction) — Indoor Coil Temp</h3>
+      <div class="chart-wrap" style="height:380px;"><canvas id="compareLoCanvas"></canvas></div>
+      <hr class="calc-divider" style="margin:25px 0;">
+      <h3 style="color:#e63946;margin-bottom:8px;" data-en="🔴 High Side (Discharge) — Outdoor Ambient" data-ar="🔴 العالي (التفريغ) — حرارة المحيط">🔴 High Side (Discharge) — Outdoor Ambient</h3>
+      <div class="chart-wrap" style="height:380px;"><canvas id="compareHiCanvas"></canvas></div>
     </div>
   </div>
   <div class="tab-content" id="tab-diagram">
