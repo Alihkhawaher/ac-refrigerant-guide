@@ -6,6 +6,10 @@
 <title>AC Refrigerant Guide & Calculator</title>
 <meta name="description" content="AC refrigerant pressure-temperature charts, diagnostic calculators, and troubleshooting guide for R-134a, R-22, R-410A, and R-32.">
 <meta name="theme-color" content="#0077b6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AC Guide">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="manifest" href="manifest.json">
 <link rel="stylesheet" href="css/styles.css">
 </head>
@@ -264,7 +268,7 @@
 <!-- PWA Install Banner -->
 <div class="install-banner" id="installBanner">
   <span>📲 <span data-en="Install this app for offline use" data-ar="ثبّت هذا التطبيق للاستخدام بدون إنترنت">Install this app for offline use</span></span>
-  <button class="dismiss" onclick="document.getElementById('installBanner').classList.remove('show')">✕</button>
+  <button class="dismiss" id="installDismiss">✕</button>
 </div>
 <!-- Data files -->
 <script src="js/data.js"></script>
@@ -276,17 +280,59 @@
 <script src="js/app.js"></script>
 <!-- PWA install prompt -->
 <script>
-var deferredPrompt;
-window.addEventListener('beforeinstallprompt', function(e) {
-  e.preventDefault();
-  deferredPrompt = e;
-  document.getElementById('installBanner').classList.add('show');
-  document.getElementById('installBanner').addEventListener('click', function(ev) {
-    if (ev.target.classList.contains('dismiss')) return;
-    deferredPrompt.prompt();
-    deferredPrompt.userChoice.then(function() { deferredPrompt = null; document.getElementById('installBanner').classList.remove('show'); });
+(function() {
+  var deferredPrompt = null;
+  var banner = document.getElementById('installBanner');
+  var dismissBtn = document.getElementById('installDismiss');
+
+  // Listen for the browser's install prompt (Chrome/Edge)
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    deferredPrompt = e;
+    // Show banner after a short delay so user has engaged with the page
+    setTimeout(function() { banner.classList.add('show'); }, 2000);
   });
-});
+
+  // Handle install click
+  banner.addEventListener('click', function(ev) {
+    if (ev.target === dismissBtn || ev.target.id === 'installDismiss') {
+      banner.classList.remove('show');
+      return;
+    }
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function(result) {
+        if (result.outcome === 'accepted') {
+          banner.classList.remove('show');
+        }
+        deferredPrompt = null;
+      });
+    } else {
+      // Fallback for iOS/Safari - show instructions
+      var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      if (isIOS) {
+        alert('To install: tap the Share button (square with arrow) then "Add to Home Screen"');
+      }
+      banner.classList.remove('show');
+    }
+  });
+
+  // Hide banner if app is already installed
+  window.addEventListener('appinstalled', function() {
+    banner.classList.remove('show');
+    deferredPrompt = null;
+  });
+
+  // Also show on iOS which doesn't support beforeinstallprompt
+  if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.navigator.standalone) {
+    // Show after user has interacted
+    setTimeout(function() {
+      if (!sessionStorage.getItem('iosInstallDismissed')) {
+        banner.classList.add('show');
+      }
+    }, 3000);
+  }
+})();
 </script>
 </body>
 </html>
