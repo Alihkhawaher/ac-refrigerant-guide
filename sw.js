@@ -1,4 +1,4 @@
-var CACHE_NAME = 'ac-guide-v1';
+var CACHE_NAME = 'ac-guide-v2';
 var ASSETS = [
   './',
   './index.html',
@@ -9,16 +9,19 @@ var ASSETS = [
   './js/knowledge.js',
   './js/devices.js',
   './js/app.js',
-  './manifest.json'
+  './manifest.json',
+  './icons/icon-192.png',
+  './icons/icon-512.png'
 ];
 
 self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(CACHE_NAME).then(function(cache) {
       return cache.addAll(ASSETS);
+    }).then(function() {
+      return self.skipWaiting();
     })
   );
-  self.skipWaiting();
 });
 
 self.addEventListener('activate', function(e) {

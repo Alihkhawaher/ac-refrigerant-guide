@@ -867,7 +867,11 @@ syncPair('compareIndoorSlider','compareIndoorInput',function(){
 
 // PWA Service Worker registration
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').catch(function() {});
+  navigator.serviceWorker.register('sw.js').then(function(reg) {
+    console.log('[PWA] Service Worker registered, scope:', reg.scope);
+  }).catch(function(err) {
+    console.error('[PWA] Service Worker registration failed:', err);
+  });
 }
 
 // Initialize
