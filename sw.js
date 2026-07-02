@@ -1,4 +1,4 @@
-var CACHE_NAME = 'ac-guide-v2';
+var CACHE_NAME = 'ac-guide-v3';
 var ASSETS = [
   './',
   './index.html',
