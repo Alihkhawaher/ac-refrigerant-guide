@@ -21,8 +21,14 @@
     </a>
     <button class="lang-toggle" onclick="toggleLang()">🌐 العربية</button>
   </div>
-  <h1 data-en="🔧 AC Refrigerant Guide & Calculator" data-ar="🔧 دليل مكيفات الهواء وحاسبة التبريد">🔧 AC Refrigerant Guide & Calculator</h1>
-  <p data-en="Select a refrigerant to view instructions, PT charts, and diagnostic calculators" data-ar="اختر مبرداً لعرض التعليمات ومخططات الضغط-الحرارة وحاسبات التشخيص">Select a refrigerant to view instructions, PT charts, and diagnostic calculators</p>
+  <div class="header-content">
+    <div class="header-icon">❄️</div>
+    <h1 data-en="AC Refrigerant Guide & Calculator" data-ar="دليل مكيفات الهواء وحاسبة التبريد">AC Refrigerant Guide & Calculator</h1>
+    <div class="header-badge">
+      <span data-en="R-134a · R-22 · R-410A · R-32" data-ar="R-134a · R-22 · R-410A · R-32">R-134a · R-22 · R-410A · R-32</span>
+    </div>
+    <p data-en="Select a refrigerant to view instructions, PT charts, and diagnostic calculators" data-ar="اختر مبرداً لعرض التعليمات ومخططات الضغط-الحرارة وحاسبات التشخيص">Select a refrigerant to view instructions, PT charts, and diagnostic calculators</p>
+  </div>
 </header>
 <div class="container">
   <div class="ref-selector" id="refSelector">
@@ -31,13 +37,9 @@
     <button class="ref-btn" data-ref="r410a">R-410A<span class="sub" data-en="Residential AC" data-ar="مكيفات منزلية">Residential AC</span></button>
     <button class="ref-btn" data-ref="r32">R-32<span class="sub" data-en="Modern AC / A2L" data-ar="مكيفات حديثة / A2L">Modern AC / A2L</span></button>
   </div>
-  <div class="card" id="infoCard">
-    <h2 id="refTitle">R-134a</h2>
-    <div class="info-grid" id="infoGrid"></div>
-    <div id="refDescription"></div>
-  </div>
   <div class="tabs" id="tabs">
-    <button class="tab-btn active" data-tab="instructions">📋 Instructions</button>
+    <button class="tab-btn active" data-tab="overview">ℹ️ Overview</button>
+    <button class="tab-btn" data-tab="instructions">📋 Instructions</button>
     <button class="tab-btn" data-tab="ptchart">📊 PT Chart</button>
     <button class="tab-btn" data-tab="calculators">🔧 Calculators</button>
     <button class="tab-btn" data-tab="target">🎯 Target Pressures</button>
@@ -48,7 +50,14 @@
     <button class="tab-btn" data-tab="maintenance">🧹 Maintenance</button>
     <button class="tab-btn" data-tab="commonknowledge">📖 Common Knowledge</button>
   </div>
-  <div class="tab-content active" id="tab-instructions">
+  <div class="tab-content active" id="tab-overview">
+    <div class="card" style="border:none;margin:0;padding:0;">
+      <h2 id="refTitle">R-134a</h2>
+      <div class="info-grid" id="infoGrid"></div>
+      <div id="refDescription"></div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-instructions">
     <div class="card" style="border:none;margin:0;padding:0;">
       <div id="instructionsContent"></div>
     </div>
