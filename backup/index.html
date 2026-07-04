@@ -1,0 +1,360 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AC Refrigerant Guide & Calculator</title>
+<meta name="description" content="AC refrigerant pressure-temperature charts, diagnostic calculators, and troubleshooting guide for R-134a, R-22, R-410A, and R-32.">
+<meta name="theme-color" content="#0077b6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="AC Guide">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header>
+  <div class="header-actions">
+    <a href="https://github.com/Alihkhawaher/ac-refrigerant-guide" target="_blank" rel="noopener noreferrer" class="github-link" title="View on GitHub">
+      <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <button class="lang-toggle" onclick="toggleLang()">🌐 العربية</button>
+  </div>
+  <div class="header-content">
+    <div class="header-icon">❄️</div>
+    <h1 data-en="AC Refrigerant Guide & Calculator" data-ar="دليل مكيفات الهواء وحاسبة التبريد">AC Refrigerant Guide & Calculator</h1>
+    <div class="header-badge">
+      <span data-en="R-134a · R-22 · R-410A · R-32" data-ar="R-134a · R-22 · R-410A · R-32">R-134a · R-22 · R-410A · R-32</span>
+    </div>
+    <p data-en="Select a refrigerant to view instructions, PT charts, and diagnostic calculators" data-ar="اختر مبرداً لعرض التعليمات ومخططات الضغط-الحرارة وحاسبات التشخيص">Select a refrigerant to view instructions, PT charts, and diagnostic calculators</p>
+  </div>
+</header>
+<div class="container">
+  <div class="ref-selector" id="refSelector">
+    <button class="ref-btn active" data-ref="r134a">R-134a<span class="sub" data-en="Automotive AC" data-ar="مكيف السيارات">Automotive AC</span></button>
+    <button class="ref-btn" data-ref="r22">R-22<span class="sub" data-en="Legacy AC / HCFC" data-ar="مكيفات قديمة / HCFC">Legacy AC / HCFC</span></button>
+    <button class="ref-btn" data-ref="r410a">R-410A<span class="sub" data-en="Residential AC" data-ar="مكيفات منزلية">Residential AC</span></button>
+    <button class="ref-btn" data-ref="r32">R-32<span class="sub" data-en="Modern AC / A2L" data-ar="مكيفات حديثة / A2L">Modern AC / A2L</span></button>
+  </div>
+  <div class="tabs" id="tabs">
+    <button class="tab-btn active" data-tab="overview">ℹ️ Overview</button>
+    <button class="tab-btn" data-tab="instructions">📋 Instructions</button>
+    <button class="tab-btn" data-tab="ptchart">📊 PT Chart</button>
+    <button class="tab-btn" data-tab="calculators">🔧 Calculators</button>
+    <button class="tab-btn" data-tab="target">🎯 Target Pressures</button>
+    <button class="tab-btn" data-tab="compare">📊 Compare</button>
+    <button class="tab-btn" data-tab="diagram">📐 System Diagram</button>
+    <button class="tab-btn" data-tab="issues">⚠️ Issues</button>
+    <button class="tab-btn" data-tab="systemcalc">🔧 System Calc</button>
+    <button class="tab-btn" data-tab="maintenance">🧹 Maintenance</button>
+    <button class="tab-btn" data-tab="commonknowledge">📖 Common Knowledge</button>
+  </div>
+  <div class="tab-content active" id="tab-overview">
+    <div class="card" style="border:none;margin:0;padding:0;">
+      <h2 id="refTitle">R-134a</h2>
+      <div class="info-grid" id="infoGrid"></div>
+      <div id="refDescription"></div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-instructions">
+    <div class="card" style="border:none;margin:0;padding:0;">
+      <div id="instructionsContent"></div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-ptchart">
+    <div class="card" style="border:none;margin:0;padding:0;">
+      <h2><span data-en="Pressure-Temperature Chart" data-ar="مخطط الضغط-الحرارة">Pressure-Temperature Chart</span> <span id="ptChartRef" style="font-size:0.7em;color:var(--text-dim);"></span></h2>
+      <div class="chart-wrap"><canvas id="ptCanvas"></canvas></div>
+      <div class="pt-table-wrap">
+        <table class="pt-table" id="ptTable">
+          <thead><tr><th data-en="Temp (°C)" data-ar="الحرارة (°C)">Temp (°C)</th><th data-en="Pressure (PSIG)" data-ar="الضغط (PSIG)">Pressure (PSIG)</th><th data-en="Phase" data-ar="المرحلة">Phase</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-calculators">
+    <div class="card" style="border:none;margin:0;padding:0;">
+      <h2 style="margin-top:0;"><span data-en="📊 Pressure ↔ Temperature —" data-ar="📊 الضغط ↔ الحرارة —">📊 Pressure ↔ Temperature —</span> <span class="calc-ref-name">R-134a</span></h2>
+      <p style="color:var(--text-dim);font-size:0.85em;margin-bottom:12px;" data-en="Use the sliders to look up saturation values." data-ar="استخدم أشرطة التمرير للبحث عن قيم التشبع.">Use the sliders to look up saturation values.</p>
+      <div class="slider-group">
+        <label data-en="🌡️ Temperature → Pressure" data-ar="🌡️ الحرارة → الضغط">🌡️ Temperature → Pressure</label>
+        <div class="slider-row">
+          <input type="range" id="ptSliderTemp" min="-15" max="150" value="25">
+          <input type="number" class="slider-num" id="ptTempInput" value="25">
+          <span class="slider-unit">°C</span>
+        </div>
+      </div>
+      <div class="result-live">
+        <div><span class="rlabel" data-en="Saturation Pressure:" data-ar="ضغط التشبع:">Saturation Pressure:</span></div>
+        <div><span class="rvalue" id="ptRPressure">—</span> <span class="runit">PSIG</span></div>
+        <div class="rdetail" id="ptPressureInfo"></div>
+      </div>
+      <div class="slider-group" style="margin-top:18px;">
+        <label data-en="🔵 Pressure → Temperature" data-ar="🔵 الضغط → الحرارة">🔵 Pressure → Temperature</label>
+        <div class="slider-row">
+          <input type="range" id="ptSliderPress" min="0" max="500" value="70">
+          <input type="number" class="slider-num" id="ptPressInput" value="70">
+          <span class="slider-unit">PSIG</span>
+        </div>
+      </div>
+      <div class="result-live">
+        <div><span class="rlabel" data-en="Saturation Temperature:" data-ar="حرارة التشبع:">Saturation Temperature:</span></div>
+        <div><span class="rvalue" id="ptRTemp2">—</span> <span class="runit">°C</span></div>
+        <div class="rdetail" id="ptTempInfo"></div>
+      </div>
+      <hr class="calc-divider">
+      <h2><span data-en="☀️ Ambient Temperature Advisor —" data-ar="☀️ مستشار حرارة المحيط —">☀️ Ambient Temperature Advisor —</span> <span class="calc-ref-name">R-134a</span></h2>
+      <p style="color:var(--text-dim);font-size:0.85em;margin-bottom:12px;" data-en="Set the outside temperature to see recommended pressures." data-ar="اضبط حرارة الخارج لرؤية الضغوط الموصى بها.">Set the outside temperature to see recommended pressures.</p>
+      <div class="slider-group">
+        <label data-en="🌡️ Outside / Ambient Temperature" data-ar="🌡️ الحرارة الخارجية / المحيطة">🌡️ Outside / Ambient Temperature</label>
+        <div class="slider-row">
+          <input type="range" id="ambSliderTemp" min="10" max="55" value="32">
+          <input type="number" class="slider-num" id="ambTempInput" value="32">
+          <span class="slider-unit">°C</span>
+        </div>
+      </div>
+      <div id="ambientResults">
+        <div class="info-grid" id="ambInfoGrid"></div>
+        <div id="ambPressures"></div>
+        <div id="ambTips"></div>
+      </div>
+      <hr class="calc-divider">
+      <h2><span data-en="🌡️ Superheat —" data-ar="🌡️ السوبريتي —">🌡️ Superheat —</span> <span class="calc-ref-name">R-134a</span></h2>
+      <p style="color:var(--text-dim);font-size:0.85em;margin-bottom:12px;" data-en="Actual Suction Line Temp − Saturation Temp = Superheat." data-ar="حرارة خط الشفط الفعلية − حرارة التشبع = السوبريتي.">Actual Suction Line Temp − Saturation Temp = Superheat.</p>
+      <div class="slider-group">
+        <label data-en="Suction Line Pressure" data-ar="ضغط خط الشفط">Suction Line Pressure</label>
+        <div class="slider-row">
+          <input type="range" id="shSliderPressure" min="5" max="300" value="35">
+          <input type="number" class="slider-num" id="shPressure" value="35">
+          <span class="slider-unit">PSIG</span>
+        </div>
+      </div>
+      <div class="slider-group">
+        <label data-en="Actual Suction Line Temperature" data-ar="حرارة خط الشفط الفعلية">Actual Suction Line Temperature</label>
+        <div class="slider-row">
+          <input type="range" id="shSliderTemp" min="-20" max="50" value="10">
+          <input type="number" class="slider-num" id="shActualTemp" value="10">
+          <span class="slider-unit">°C</span>
+        </div>
+      </div>
+      <div class="result-live">
+        <div><span class="rlabel" data-en="Superheat:" data-ar="السوبريتي:">Superheat:</span> <span class="rvalue" id="shValue">—</span><span class="runit">°C</span></div>
+        <div class="rdetail"><span data-en="Saturation:" data-ar="التشبع:">Saturation:</span> <span id="shSatTemp">—</span>°C | <span data-en="Line:" data-ar="الخط:">Line:</span> <span id="shActTemp">—</span>°C</div>
+        <div class="diag" id="shDiag"></div>
+      </div>
+      <hr class="calc-divider">
+      <h2><span data-en="❄️ Subcooling —" data-ar="❄️ التبريد تحت التشبع —">❄️ Subcooling —</span> <span class="calc-ref-name">R-134a</span></h2>
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:10px;cursor:pointer;font-size:0.9em;color:var(--text-dim);">
+        <input type="checkbox" id="txvToggle" style="width:18px;height:18px;cursor:pointer;"> <span data-en="System has TXV / EEV (expansion valve)" data-ar="النظام يحتوي TXV / EEV (صمام تمديد)">System has TXV / EEV (expansion valve)</span>
+      </label>
+      <div id="txvOffMsg" class="warn-box" style="display:none;margin-bottom:10px;"><div class="title" data-en="ℹ️ Fixed Orifice / Piston System" data-ar="ℹ️ نظام فتحة ثابتة / مكبس">ℹ️ Fixed Orifice / Piston System</div><p style="font-size:0.85em;" data-en="Your system uses a fixed orifice — use the Superheat method." data-ar="النظام يستخدم فتحة ثابتة — استخدم طريقة السوبريتي.">Your system uses a fixed orifice — use the Superheat method.</p></div>
+      <p id="scDesc" style="color:var(--text-dim);font-size:0.85em;margin-bottom:12px;display:none;" data-en="Saturation Temp − Actual Liquid Line Temp = Subcooling." data-ar="حرارة التشبع − حرارة خط السائل الفعلية = التبريد تحت التشبع.">Saturation Temp − Actual Liquid Line Temp = Subcooling.</p>
+      <div id="scContent" style="display:none;">
+      <div class="slider-group">
+        <label data-en="Liquid Line Pressure" data-ar="ضغط خط السائل">Liquid Line Pressure</label>
+        <div class="slider-row">
+          <input type="range" id="scSliderPressure" min="50" max="600" value="200">
+          <input type="number" class="slider-num" id="scPressure" value="200">
+          <span class="slider-unit">PSIG</span>
+        </div>
+      </div>
+      <div class="slider-group">
+        <label data-en="Actual Liquid Line Temperature" data-ar="حرارة خط السائل الفعلية">Actual Liquid Line Temperature</label>
+        <div class="slider-row">
+          <input type="range" id="scSliderTemp" min="0" max="80" value="40">
+          <input type="number" class="slider-num" id="scActualTemp" value="40">
+          <span class="slider-unit">°C</span>
+        </div>
+      </div>
+      <div class="result-live">
+        <div><span class="rlabel" data-en="Subcooling:" data-ar="التبريد تحت التشبع:">Subcooling:</span> <span class="rvalue" id="scValue">—</span><span class="runit">°C</span></div>
+        <div class="rdetail"><span data-en="Saturation:" data-ar="التشبع:">Saturation:</span> <span id="scSatTemp">—</span>°C | <span data-en="Line:" data-ar="الخط:">Line:</span> <span id="scActTemp">—</span>°C</div>
+        <div class="diag" id="scDiag"></div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-target">
+    <div class="card" style="border:none;margin:0;padding:0;">
+      <h2><span data-en="🎯 Target Pressures & Line Diagnostics" data-ar="🎯 الضغوط المستهدفة وتشخيص الخطوط">🎯 Target Pressures & Line Diagnostics</span> <span id="targetRef" style="font-size:0.7em;color:var(--text-dim);"></span></h2>
+      <div id="targetContent"></div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-compare">
+    <div class="card" style="border:none;margin:0;padding:0;">
+      <h2 data-en="📊 Refrigerant Comparison Charts" data-ar="📊 مخططات مقارنة المبردات">📊 Refrigerant Comparison Charts</h2>
+      <p style="color:var(--text-dim);font-size:0.85em;margin-bottom:15px;" data-en="Suction pressure is thermostat-controlled (relatively stable). Discharge pressure rises with outdoor heat." data-ar="ضغط الشفط يتحكّم فيه الثرمستات (ثابت نسبياً). ضغط التفريغ يرتفع مع حرارة الخارج.">Suction pressure is thermostat-controlled (relatively stable). Discharge pressure rises with outdoor heat.</p>
+      <h3 style="color:var(--accent);margin-bottom:8px;" data-en="🔵 Low Side (Suction) — Indoor Coil Temp" data-ar="🔵 المنخفض (الشفط) — حرارة ملف المبخر">🔵 Low Side (Suction) — Indoor Coil Temp</h3>
+      <div class="chart-wrap" style="height:380px;"><canvas id="compareLoCanvas"></canvas></div>
+      <hr class="calc-divider" style="margin:25px 0;">
+      <h3 style="color:#e63946;margin-bottom:8px;" data-en="🔴 High Side (Discharge) — Outdoor Ambient" data-ar="🔴 العالي (التفريغ) — حرارة المحيط">🔴 High Side (Discharge) — Outdoor Ambient</h3>
+      <div class="chart-wrap" style="height:380px;"><canvas id="compareHiCanvas"></canvas></div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-diagram">
+    <div class="card" style="border:none;margin:0;padding:0;">
+      <h2><span data-en="AC System Pressure Diagram —" data-ar="مخطط ضغط نظام التكييف —">AC System Pressure Diagram —</span> <span id="diagRef" style="color:var(--accent);"></span></h2>
+      <p style="color:var(--text-dim);margin-bottom:10px;" data-en="Interactive P&ID. Click components for details." data-ar="مخطط P&ID تفاعلي. انقر للمكوّنات للتفاصيل.">Interactive P&ID. Click components for details.</p>
+      <div class="slider-group">
+        <label data-en="🌡️ Ambient Temperature" data-ar="🌡️ حرارة المحيط">🌡️ Ambient Temperature</label>
+        <div class="slider-row">
+          <input type="range" id="diagAmbSlider" min="18" max="55" value="35">
+          <input type="number" class="slider-num" id="diagAmbInput" value="35">
+          <span class="slider-unit">°C</span>
+        </div>
+      </div>
+      <div id="diagInfoGrid" class="info-grid" style="margin-bottom:10px;"></div>
+      <div id="diagZoomCtrl"><button onclick="diagZoom(1.2)" data-en="➕ Zoom In" data-ar="➕ تكبير">➕ Zoom In</button><button onclick="diagZoom(0.8)" data-en="➖ Zoom Out" data-ar="➖ تصغير">➖ Zoom Out</button><button onclick="diagReset()" data-en="🔄 Reset" data-ar="🔄 إعادة ضبط">🔄 Reset</button><span id="diagZoomLevel">100%</span></div>
+      <div id="jointDiagram" style="width:100%;min-height:450px;background:#0a1520;border-radius:8px;border:1px solid var(--border);margin:10px 0;overflow:hidden;"></div>
+      <div id="diagDetail" class="result-live" style="display:none;margin-top:10px;"></div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-issues">
+    <div class="card" style="border:none;margin:0;padding:0;">
+      <h2><span data-en="⚠️ Common Issues & Troubleshooting" data-ar="⚠️ المشاكل الشائعة واستكشاف الأخطاء">⚠️ Common Issues & Troubleshooting</span> <span id="issuesRef" style="font-size:0.7em;color:var(--text-dim);"></span></h2>
+      <div id="issuesContent"></div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-systemcalc">
+    <div class="card" style="border:none;margin:0;padding:0;">
+      <h2 data-en="🔧 AC System Component Calculator" data-ar="🔧 حاسبة مكونات نظام التكييف">🔧 AC System Component Calculator</h2>
+      <h3 data-en="Option A: Calculate from Room Size" data-ar="الخيار أ: احسب من حجم الغرفة">Option A: Calculate from Room Size</h3>
+      <div class="calc-row">
+        <div class="calc-field"><label data-en="Room Length" data-ar="طول الغرفة">Room Length</label><input type="number" id="sysLength" value="5" min="1" max="50"><span style="font-size:0.75em;color:var(--text-dim);">meters</span></div>
+        <div class="calc-field"><label data-en="Room Width" data-ar="عرض الغرفة">Room Width</label><input type="number" id="sysWidth" value="4" min="1" max="50"><span style="font-size:0.75em;color:var(--text-dim);">meters</span></div>
+        <div class="calc-field"><label data-en="Room Height" data-ar="ارتفاع الغرفة">Room Height</label><input type="number" id="sysHeight" value="2.7" min="2" max="6" step="0.1"><span style="font-size:0.75em;color:var(--text-dim);">meters</span></div>
+      </div>
+      <div class="calc-row">
+        <div class="calc-field"><label data-en="Climate Zone" data-ar="المناخ">Climate Zone</label><select id="sysClimate"><option value="1" data-en="Zone 1 — Cool" data-ar="المنطقة 1 — بارد">Zone 1 — Cool</option><option value="2" selected data-en="Zone 2 — Moderate" data-ar="المنطقة 2 — معتدل">Zone 2 — Moderate</option><option value="3" data-en="Zone 3 — Hot" data-ar="المنطقة 3 — حار">Zone 3 — Hot</option><option value="4" data-en="Zone 4 — Extreme / T3" data-ar="المنطقة 4 — شديد / T3">Zone 4 — Extreme / T3</option></select></div>
+        <div class="calc-field"><label data-en="Insulation" data-ar="جودة العزل">Insulation</label><select id="sysInsulation"><option value="good" data-en="Good" data-ar="جيد">Good</option><option value="average" selected data-en="Average" data-ar="متوسط">Average</option><option value="poor" data-en="Poor" data-ar="ضعيف">Poor</option></select></div>
+        <div class="calc-field"><label data-en="Windows" data-ar="النوافذ">Windows</label><select id="sysWindows"><option value="few" data-en="Few" data-ar="قليلة">Few</option><option value="average" selected data-en="Average" data-ar="متوسط">Average</option><option value="many" data-en="Many / Large" data-ar="كثيرة">Many / Large</option></select></div>
+      </div>
+      <button class="calc-btn" onclick="calcSystem()" data-en="Calculate from Room" data-ar="احسب من الغرفة">Calculate from Room</button>
+      <hr class="calc-divider">
+      <h3 data-en="Option B: Select by Capacity" data-ar="الخيار ب: اختر حسب القدرة">Option B: Select by Capacity</h3>
+      <div class="calc-row">
+        <div class="calc-field"><label data-en="System Capacity (BTU/h)" data-ar="قدرة النظام (BTU/h)">System Capacity (BTU/h)</label><select id="sysBTUSelect">
+          <option value="9000">9,000 BTU — 0.75 Ton</option>
+          <option value="12000">12,000 BTU — 1 Ton</option>
+          <option value="18000" selected>18,000 BTU — 1.5 Ton</option>
+          <option value="24000">24,000 BTU — 2 Ton</option>
+          <option value="30000">30,000 BTU — 2.5 Ton</option>
+          <option value="36000">36,000 BTU — 3 Ton</option>
+          <option value="42000">42,000 BTU — 3.5 Ton</option>
+          <option value="48000">48,000 BTU — 4 Ton</option>
+          <option value="60000">60,000 BTU — 5 Ton</option>
+        </select></div>
+        <div class="calc-field"><label data-en="System Type" data-ar="نوع النظام">System Type</label><select id="sysType">
+          <option value="split" selected data-en="Split System" data-ar="نظام سبليت">Split System</option>
+          <option value="minisplit" data-en="Mini-Split" data-ar="ميني سبليت">Mini-Split</option>
+          <option value="package" data-en="Packaged Unit" data-ar="وحدة مُجمّعة">Packaged Unit</option>
+        </select></div>
+      </div>
+      <button class="calc-btn" onclick="calcDevice()" data-en="Calculate Components" data-ar="احسب المكوّنات">Calculate Components</button>
+      <div class="result-box" id="sysResult"></div>
+      <div id="deviceResult" style="margin-top:20px;"></div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-maintenance">
+    <div class="card" style="border:none;margin:0;padding:0;">
+      <h2 data-en="🧹 AC Cleaning & Maintenance Guide" data-ar="🧹 دليل تنظيف وصيانة المكيفات">🧹 AC Cleaning & Maintenance Guide</h2>
+      <div id="maintenanceContent"></div>
+    </div>
+  </div>
+  <div class="tab-content" id="tab-commonknowledge">
+    <div class="card" style="border:none;margin:0;padding:0;">
+      <h2 id="ckTitle">📖 Common Knowledge — AC Diagnostics & Troubleshooting</h2>
+      <input type="text" class="qa-search" id="qaSearch" placeholder="🔍 Search questions..." oninput="filterQA()">
+      <div id="commonKnowledgeContent"></div>
+    </div>
+  </div>
+</div>
+<footer>
+  <p><span data-en="⚠️ This guide is for educational purposes. Always follow manufacturer specifications." data-ar="⚠️ هذا الدليل لأغراض تعليمية. اتبع دائماً مواصفات الشركة المصنعة.">⚠️ This guide is for educational purposes. Always follow manufacturer specifications.</span><br>
+  <span data-en="Data sourced from NIST thermodynamic library." data-ar="البيانات من مكتبة NIST الديناميكية الحرارية.">Data sourced from NIST thermodynamic library.</span></p>
+</footer>
+<!-- PWA Install Banner -->
+<div class="install-banner" id="installBanner">
+  <span>📲 <span data-en="Install this app for offline use" data-ar="ثبّت هذا التطبيق للاستخدام بدون إنترنت">Install this app for offline use</span></span>
+  <button class="dismiss" id="installDismiss">✕</button>
+</div>
+<!-- Data files -->
+<script src="js/data.js"></script>
+<script src="js/instructions.js"></script>
+<script src="js/issues.js"></script>
+<script src="js/knowledge.js"></script>
+<script src="js/devices.js"></script>
+<!-- App logic -->
+<script src="js/app.js"></script>
+<!-- PWA install prompt -->
+<script>
+(function() {
+  var deferredPrompt = null;
+  var banner = document.getElementById('installBanner');
+  var dismissBtn = document.getElementById('installDismiss');
+
+  // Listen for the browser's install prompt (Chrome/Edge)
+  window.addEventListener('beforeinstallprompt', function(e) {
+    e.preventDefault();
+    deferredPrompt = e;
+    // Show banner after a short delay so user has engaged with the page
+    setTimeout(function() { banner.classList.add('show'); }, 2000);
+  });
+
+  // Handle install click
+  banner.addEventListener('click', function(ev) {
+    if (ev.target === dismissBtn || ev.target.id === 'installDismiss') {
+      banner.classList.remove('show');
+      return;
+    }
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(function(result) {
+        if (result.outcome === 'accepted') {
+          banner.classList.remove('show');
+        }
+        deferredPrompt = null;
+      });
+    } else {
+      // Fallback for iOS/Safari - show instructions
+      var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+      if (isIOS) {
+        alert('To install: tap the Share button (square with arrow) then "Add to Home Screen"');
+      }
+      banner.classList.remove('show');
+    }
+  });
+
+  // Hide banner if app is already installed
+  window.addEventListener('appinstalled', function() {
+    banner.classList.remove('show');
+    deferredPrompt = null;
+  });
+
+  // Also show on iOS which doesn't support beforeinstallprompt
+  if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.navigator.standalone) {
+    // Show after user has interacted
+    setTimeout(function() {
+      if (!sessionStorage.getItem('iosInstallDismissed')) {
+        banner.classList.add('show');
+      }
+    }, 3000);
+  }
+})();
+</script>
+<!-- Service Worker Registration -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('sw.js').then(function(registration) {
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }).catch(function(err) {
+      console.error('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+</script>
+</body>
+</html>

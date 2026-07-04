@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup — UIkit</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.21.13/dist/css/uikit.min.css">
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.21.13/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  body { background: #0f1923; color: #e0e8f0; }
+
+  /* Sidebar */
+  .app-sidebar {
+    width: 260px; min-height: 100vh; background: #1a2a3a;
+    border-right: 1px solid #2a3a4a; display: flex; flex-direction: column;
+  }
+  .sidebar-header { padding: 16px; border-bottom: 1px solid #2a3a4a; }
+  .sidebar-header .brand-icon { font-size: 1.8em; }
+  .sidebar-header .brand-title { font-weight: 700; font-size: 0.9em; }
+  .sidebar-header .brand-sub { font-size: 0.7em; color: #8899aa; }
+  .sidebar-body { flex-grow: 1; overflow-y: auto; padding: 8px 0; }
+  .sidebar-footer { padding: 12px; border-top: 1px solid #2a3a4a; text-align: center; font-size: 0.7em; color: #556677; margin-top: auto; }
+  .nav-section { font-size: 0.65em; text-transform: uppercase; letter-spacing: 0.12em; color: #556677; padding: 14px 20px 4px; font-weight: 700; }
+  .sidebar-nav { list-style: none; margin: 0; padding: 0; }
+  .sidebar-nav li a {
+    display: block; padding: 8px 20px; color: #8899aa; font-size: 0.88em;
+    border-radius: 6px; margin: 1px 8px; text-decoration: none; transition: all 0.15s;
+  }
+  .sidebar-nav li a:hover { color: #e0e8f0; background: rgba(0,180,216,0.08); }
+  .sidebar-nav li.uk-active a { color: #fff; background: linear-gradient(135deg, #0077b6, #00b4d8); font-weight: 600; }
+
+  /* Top bar */
+  .app-topbar {
+    background: #1a2a3a; border-bottom: 1px solid #2a3a4a;
+    padding: 10px 20px; display: flex; align-items: center; gap: 12px;
+  }
+
+  /* Cards */
+  .app-card { background: #1a2a3a; border: 1px solid #2a3a4a; border-radius: 10px; }
+
+  /* Info boxes */
+  .info-box {
+    background: rgba(0,0,0,0.2); border-left: 3px solid #00b4d8;
+    border-radius: 6px; padding: 10px 14px;
+  }
+  .info-box .info-label { font-size: 0.7em; color: #8899aa; text-transform: uppercase; }
+  .info-box .info-value { font-size: 1.05em; font-weight: 600; }
+
+  /* Result display */
+  .result-display {
+    background: rgba(0,0,0,0.2); border: 1px solid #2a3a4a;
+    border-radius: 8px; padding: 14px;
+  }
+  .result-display .result-label { font-size: 0.8em; color: #8899aa; }
+  .result-display .result-value { font-size: 1.8em; font-weight: 700; color: #00b4d8; }
+  .result-display .result-unit { font-size: 0.5em; font-weight: 400; color: #8899aa; }
+
+  /* Slider styling */
+  .slider-card input[type="range"] { accent-color: #00b4d8; }
+
+  /* Chart container */
+  .chart-container { height: 350px; }
+
+  /* UIkit dark overrides */
+  .uk-input, .uk-select, .uk-textarea {
+    background: rgba(0,0,0,0.3); border-color: #2a3a4a; color: #e0e8f0;
+  }
+  .uk-input:focus, .uk-select:focus { border-color: #00b4d8; }
+  .uk-table th { background: rgba(0,119,182,0.15); color: #e0e8f0; border-color: #2a3a4a; }
+  .uk-table td { border-color: #2a3a4a; color: #e0e8f0; }
+  .uk-table-striped tbody tr:nth-of-type(odd) { background: rgba(0,0,0,0.15); }
+  .uk-label { background: #0077b6; }
+  .uk-card-default { background: #1a2a3a; border: 1px solid #2a3a4a; color: #e0e8f0; }
+  .uk-card-body { padding: 20px; }
+  .uk-section { padding: 24px; }
+
+  /* Hamburger */
+  .hamburger-btn { display: none; background: none; border: none; color: #e0e8f0; font-size: 1.3em; cursor: pointer; }
+
+  /* Mobile sidebar */
+  .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 999; }
+  .sidebar-overlay.uk-open { display: block; }
+  @media (max-width: 959px) {
+    .app-sidebar { position: fixed; z-index: 1000; transform: translateX(-100%); transition: transform 0.3s ease; }
+    .app-sidebar.uk-open { transform: translateX(0); }
+    .hamburger-btn { display: block; }
+  }
+</style>
+</head>
+<body>
+
+<div style="display:flex;">
+  <div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <span class="brand-icon">❄️</span>
+        <div>
+          <div class="brand-title">AC Refrigerant</div>
+          <div class="brand-sub">Guide & Calculator</div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-body">
+      <div class="nav-section">🚗 Vehicle</div>
+      <ul class="sidebar-nav uk-nav">
+        <li class="uk-active"><a href="#">🔍 Vehicle Lookup</a></li>
+      </ul>
+      <div class="nav-section">📖 Reference</div>
+      <ul class="sidebar-nav uk-nav">
+        <li><a href="#">ℹ️ Overview</a></li>
+        <li><a href="#">📊 PT Chart</a></li>
+        <li><a href="#">📊 Compare</a></li>
+      </ul>
+      <div class="nav-section">🔧 Tools</div>
+      <ul class="sidebar-nav uk-nav">
+        <li><a href="#">🔧 Calculators</a></li>
+        <li><a href="#">🎯 Target Pressures</a></li>
+        <li><a href="#">🔧 System Calc</a></li>
+      </ul>
+      <div class="nav-section">📐 System</div>
+      <ul class="sidebar-nav uk-nav">
+        <li><a href="#">📐 System Diagram</a></li>
+      </ul>
+      <div class="nav-section">🛠️ Help</div>
+      <ul class="sidebar-nav uk-nav">
+        <li><a href="#">📋 Instructions</a></li>
+        <li><a href="#">⚠️ Issues</a></li>
+        <li><a href="#">🧹 Maintenance</a></li>
+        <li><a href="#">📖 Common Knowledge</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-footer">Data from NIST thermodynamic library</div>
+  </nav>
+
+  <!-- Main -->
+  <div style="flex:1;min-height:100vh;display:flex;flex-direction:column;">
+    <div class="app-topbar">
+      <button class="hamburger-btn" onclick="toggleSidebar()">☰</button>
+      <span style="font-weight:700;">❄️ AC Refrigerant Guide</span>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+        <div class="uk-button-group">
+          <button class="uk-button uk-button-small uk-button-primary">R-134a</button>
+          <button class="uk-button uk-button-small uk-button-default">R-22</button>
+          <button class="uk-button uk-button-small uk-button-default">R-410A</button>
+          <button class="uk-button uk-button-small uk-button-default">R-32</button>
+        </div>
+        <button class="uk-button uk-button-small uk-button-default">🌐 عربي</button>
+      </div>
+    </div>
+
+    <div class="uk-section">
+      <div class="uk-container" style="max-width:900px;">
+        <h2 class="uk-h4" style="color:#00b4d8;margin-bottom:8px;">📊 Pressure-Temperature Chart</h2>
+        <p style="color:#8899aa;font-size:0.85em;margin-bottom:16px;">R-134a saturation curve. Use the sliders below to look up values.</p>
+
+        <div class="uk-card uk-card-default uk-margin-bottom">
+          <div class="uk-card-body">
+            <div class="chart-container"><canvas id="demoChart"></canvas></div>
+          </div>
+        </div>
+
+        <div class="uk-grid-small uk-child-width-1-2@s uk-margin-bottom" uk-grid>
+          <div>
+            <div class="uk-card uk-card-default slider-card">
+              <div class="uk-card-body">
+                <label style="font-size:0.85em;color:#8899aa;display:block;margin-bottom:6px;">🌡️ Temperature → Pressure</label>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <input type="range" min="-15" max="80" value="25" style="flex:1;">
+                  <input type="number" value="25" class="uk-input uk-form-small" style="width:65px;text-align:center;">
+                  <span style="font-size:0.8em;color:#8899aa;">°C</span>
+                </div>
+                <div class="result-display uk-margin-small-top">
+                  <div class="result-label">Saturation Pressure</div>
+                  <div class="result-value">72.5 <span class="result-unit">PSIG</span></div>
+                </div>
+                <div class="uk-alert-success uk-padding-small uk-margin-small-top" uk-alert>
+                  <p style="font-size:0.85em;">✅ Ideal evaporator range</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="uk-card uk-card-default slider-card">
+              <div class="uk-card-body">
+                <label style="font-size:0.85em;color:#8899aa;display:block;margin-bottom:6px;">🔵 Pressure → Temperature</label>
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <input type="range" min="0" max="300" value="70" style="flex:1;">
+                  <input type="number" value="70" class="uk-input uk-form-small" style="width:65px;text-align:center;">
+                  <span style="font-size:0.8em;color:#8899aa;">PSIG</span>
+                </div>
+                <div class="result-display uk-margin-small-top">
+                  <div class="result-label">Saturation Temperature</div>
+                  <div class="result-value">24.1 <span class="result-unit">°C</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="uk-grid-small uk-child-width-1-4@s uk-margin-bottom" uk-grid>
+          <div><div class="info-box"><div class="info-label">Type</div><div class="info-value">HFC</div></div></div>
+          <div><div class="info-box"><div class="info-label">Safety Class</div><div class="info-value">A1</div></div></div>
+          <div><div class="info-box"><div class="info-label">GWP</div><div class="info-value">1430</div></div></div>
+          <div><div class="info-box"><div class="info-label">Boiling Point</div><div class="info-value">-26.1°C</div></div></div>
+        </div>
+
+        <div class="uk-card uk-card-default uk-margin-top">
+          <div class="uk-card-body">
+            <h6 style="font-weight:700;margin-bottom:12px;">📊 Operating Pressures</h6>
+            <div class="uk-overflow-auto">
+              <table class="uk-table uk-table-small uk-table-striped">
+                <thead><tr><th>Ambient</th><th>Low Side</th><th>High Side</th></tr></thead>
+                <tbody>
+                  <tr><td>24°C</td><td style="color:#2a9d8f">25–35</td><td>140–170</td></tr>
+                  <tr><td>32°C</td><td style="color:#f4a261">30–40</td><td>185–220</td></tr>
+                  <tr><td>40°C</td><td style="color:#f4a261">35–45</td><td>230–270</td></tr>
+                  <tr><td>48°C 🔥</td><td style="color:#e63946">38–48</td><td>280–320</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('uk-open');
+  document.getElementById('overlay').classList.toggle('uk-open');
+}
+const ctx = document.getElementById('demoChart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['-15','-10','-5','0','5','10','15','20','25','30','35','40','45','50'],
+    datasets: [{
+      label: 'R-134a',
+      data: [0.7,2.4,4.5,7.0,9.9,13.3,17.2,21.7,26.8,32.6,39.2,46.6,55.0,64.4],
+      borderColor: '#00b4d8', backgroundColor: 'rgba(0,180,216,0.1)',
+      fill: true, tension: 0.4, pointRadius: 3, pointBackgroundColor: '#00b4d8'
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { color: '#e0e8f0' } } },
+    scales: {
+      x: { title: { display: true, text: 'Temperature (°C)', color: '#8899aa' }, ticks: { color: '#8899aa' }, grid: { color: 'rgba(42,58,74,0.5)' } },
+      y: { title: { display: true, text: 'Pressure (PSIG)', color: '#8899aa' }, ticks: { color: '#8899aa' }, grid: { color: 'rgba(42,58,74,0.5)' } }
+    }
+  }
+});
+</script>
+</body>
+</html>

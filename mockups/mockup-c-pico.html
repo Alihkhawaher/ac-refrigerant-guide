@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup C — Pico CSS (Minimal)</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  :root {
+    --pico-background-color: #0f1923;
+    --pico-card-background-color: #1a2a3a;
+    --pico-muted-border-color: #2a3a4a;
+    --pico-primary: #00b4d8;
+    --pico-primary-hover: #0077b6;
+    --pico-color: #e0e8f0;
+    --pico-muted-color: #8899aa;
+  }
+  .layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+  .sidebar {
+    background: #1a2a3a;
+    border-right: 1px solid #2a3a4a;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+  }
+  .sidebar-header { padding: 16px; border-bottom: 1px solid #2a3a4a; display: flex; align-items: center; gap: 10px; }
+  .sidebar-header .title { font-weight: 700; font-size: 0.9em; }
+  .sidebar-header .subtitle { font-size: 0.7em; color: var(--pico-muted-color); }
+  .nav-group { padding: 4px 0; }
+  .nav-group-label { font-size: 0.65em; text-transform: uppercase; letter-spacing: 0.12em; color: #556677; padding: 14px 16px 4px; font-weight: 700; }
+  .nav-link {
+    display: block;
+    padding: 8px 16px;
+    color: var(--pico-muted-color);
+    text-decoration: none;
+    font-size: 0.88em;
+    border-radius: 6px;
+    margin: 1px 8px;
+    transition: all 0.15s;
+  }
+  .nav-link:hover { color: var(--pico-color); background: rgba(0,180,216,0.08); }
+  .nav-link.active { color: #fff; background: linear-gradient(135deg, #0077b6, #00b4d8); font-weight: 600; }
+  .nav-link .icon { margin-right: 8px; }
+  .sidebar-footer { padding: 12px; border-top: 1px solid #2a3a4a; text-align: center; font-size: 0.7em; color: #556677; margin-top: auto; }
+  .topbar {
+    background: #1a2a3a;
+    border-bottom: 1px solid #2a3a4a;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .topbar .brand { font-weight: 700; }
+  .topbar .actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .ref-pills { display: flex; gap: 0; }
+  .ref-pill {
+    padding: 6px 14px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid #2a3a4a;
+    color: var(--pico-muted-color);
+    cursor: pointer;
+    font-size: 0.82em;
+    font-weight: 600;
+    transition: all 0.15s;
+  }
+  .ref-pill:first-child { border-radius: 6px 0 0 6px; }
+  .ref-pill:last-child { border-radius: 0 6px 6px 0; }
+  .ref-pill.active { background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff; border-color: #00b4d8; }
+  .ref-pill:hover:not(.active) { color: var(--pico-color); border-color: var(--pico-primary); }
+  .content { padding: 20px 24px; overflow-y: auto; }
+  .info-box {
+    background: rgba(0,0,0,0.2);
+    border-left: 3px solid #00b4d8;
+    border-radius: 6px;
+    padding: 10px 14px;
+  }
+  .info-box .label { font-size: 0.7em; color: var(--pico-muted-color); text-transform: uppercase; }
+  .info-box .value { font-size: 1.05em; font-weight: 600; }
+  .slider-card { background: var(--pico-card-background-color); border: 1px solid #2a3a4a; border-radius: 10px; padding: 16px; }
+  .result-box { background: rgba(0,0,0,0.2); border: 1px solid #2a3a4a; border-radius: 8px; padding: 14px; }
+  .hamburger { display: none; background: none; border: none; color: var(--pico-color); font-size: 1.4em; cursor: pointer; padding: 4px; }
+  .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; }
+  @media (max-width: 900px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { position: fixed; left: -260px; top: 0; bottom: 0; z-index: 101; transition: left 0.3s ease; width: 260px; }
+    .sidebar.open { left: 0; }
+    .sidebar-overlay.open { display: block; }
+    .hamburger { display: block; }
+  }
+  article { background: var(--pico-card-background-color); border: 1px solid #2a3a4a; border-radius: 10px; }
+  article header { background: transparent; border-bottom: 1px solid #2a3a4a; }
+  table { --pico-border-color: #2a3a4a; }
+  thead { background: rgba(0,119,182,0.2); }
+  progress { --pico-primary: #00b4d8; }
+  input[type="range"] { --pico-primary: #00b4d8; }
+</style>
+</head>
+<body>
+<div class="layout">
+  <!-- Sidebar overlay -->
+  <div class="sidebar-overlay" id="overlay" onclick="toggleNav()"></div>
+
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebarNav">
+    <div class="sidebar-header">
+      <span style="font-size:1.6em;">❄️</span>
+      <div>
+        <div class="title">AC Refrigerant</div>
+        <div class="subtitle">Guide & Calculator</div>
+      </div>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">🚗 Vehicle</div>
+      <a class="nav-link active"><span class="icon">🔍</span>Vehicle Lookup</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">📖 Reference</div>
+      <a class="nav-link"><span class="icon">ℹ️</span>Overview</a>
+      <a class="nav-link"><span class="icon">📊</span>PT Chart</a>
+      <a class="nav-link"><span class="icon">📊</span>Compare</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">🔧 Tools</div>
+      <a class="nav-link"><span class="icon">🔧</span>Calculators</a>
+      <a class="nav-link"><span class="icon">🎯</span>Target Pressures</a>
+      <a class="nav-link"><span class="icon">🔧</span>System Calc</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">📐 System</div>
+      <a class="nav-link"><span class="icon">📐</span>System Diagram</a>
+    </div>
+
+    <div class="nav-group">
+      <div class="nav-group-label">🛠️ Help</div>
+      <a class="nav-link"><span class="icon">📋</span>Instructions</a>
+      <a class="nav-link"><span class="icon">⚠️</span>Issues</a>
+      <a class="nav-link"><span class="icon">🧹</span>Maintenance</a>
+      <a class="nav-link"><span class="icon">📖</span>Common Knowledge</a>
+    </div>
+
+    <div class="sidebar-footer">Data from NIST thermodynamic library</div>
+  </nav>
+
+  <!-- Main -->
+  <div style="display:flex;flex-direction:column;min-height:100vh;">
+    <div class="topbar">
+      <button class="hamburger" onclick="toggleNav()">☰</button>
+      <span class="brand">❄️ AC Refrigerant Guide</span>
+      <div class="actions">
+        <div class="ref-pills">
+          <span class="ref-pill active">R-134a</span>
+          <span class="ref-pill">R-22</span>
+          <span class="ref-pill">R-410A</span>
+          <span class="ref-pill">R-32</span>
+        </div>
+        <button class="ref-pill" style="border-radius:6px;">🌐 عربي</button>
+      </div>
+    </div>
+
+    <div class="content">
+      <div style="max-width:900px;">
+        <h2 style="color:#00b4d8;margin-bottom:4px;">📊 Pressure-Temperature Chart</h2>
+        <p style="color:var(--pico-muted-color);font-size:0.85em;margin-bottom:16px;">R-134a saturation curve. Use the sliders below to look up values.</p>
+
+        <!-- Chart -->
+        <article>
+          <div style="padding:16px;height:350px;"><canvas id="demoChart"></canvas></div>
+        </article>
+
+        <!-- Sliders -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;">
+          <div class="slider-card">
+            <label style="font-size:0.85em;color:var(--pico-muted-color);">🌡️ Temperature → Pressure</label>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <input type="range" min="-15" max="80" value="25" style="flex:1;">
+              <input type="number" value="25" style="width:60px;padding:6px;background:rgba(0,0,0,0.3);border:1px solid #2a3a4a;border-radius:4px;color:var(--pico-color);text-align:center;">
+              <span style="font-size:0.8em;color:var(--pico-muted-color);">°C</span>
+            </div>
+            <div class="result-box" style="margin-top:12px;">
+              <div style="font-size:0.8em;color:var(--pico-muted-color);">Saturation Pressure</div>
+              <div style="font-size:1.8em;font-weight:700;color:#00b4d8;">72.5 <span style="font-size:0.5em;font-weight:400;color:var(--pico-muted-color);">PSIG</span></div>
+            </div>
+            <div style="background:rgba(42,157,143,0.15);border:1px solid #2a9d8f;border-radius:6px;padding:8px;margin-top:10px;font-size:0.85em;">✅ Ideal evaporator range</div>
+          </div>
+
+          <div class="slider-card">
+            <label style="font-size:0.85em;color:var(--pico-muted-color);">🔵 Pressure → Temperature</label>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <input type="range" min="0" max="300" value="70" style="flex:1;">
+              <input type="number" value="70" style="width:60px;padding:6px;background:rgba(0,0,0,0.3);border:1px solid #2a3a4a;border-radius:4px;color:var(--pico-color);text-align:center;">
+              <span style="font-size:0.8em;color:var(--pico-muted-color);">PSIG</span>
+            </div>
+            <div class="result-box" style="margin-top:12px;">
+              <div style="font-size:0.8em;color:var(--pico-muted-color);">Saturation Temperature</div>
+              <div style="font-size:1.8em;font-weight:700;color:#00b4d8;">24.1 <span style="font-size:0.5em;font-weight:400;color:var(--pico-muted-color);">°C</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info grid -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px;">
+          <div class="info-box"><div class="label">Type</div><div class="value">HFC</div></div>
+          <div class="info-box"><div class="label">Safety Class</div><div class="value">A1</div></div>
+          <div class="info-box"><div class="label">GWP</div><div class="value">1430</div></div>
+          <div class="info-box"><div class="label">Boiling Point</div><div class="value">-26.1°C</div></div>
+        </div>
+
+        <!-- Table -->
+        <article style="margin-top:16px;">
+          <header style="padding:12px 16px;"><strong>📊 Operating Pressures</strong></header>
+          <div style="padding:12px;">
+            <table>
+              <thead><tr><th>Ambient</th><th>Low Side</th><th>High Side</th></tr></thead>
+              <tbody>
+                <tr><td>24°C</td><td style="color:#2a9d8f">25–35</td><td>140–170</td></tr>
+                <tr><td>32°C</td><td style="color:#f4a261">30–40</td><td>185–220</td></tr>
+                <tr><td>40°C</td><td style="color:#f4a261">35–45</td><td>230–270</td></tr>
+                <tr><td>48°C 🔥</td><td style="color:#e63946">38–48</td><td>280–320</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleNav() {
+  document.getElementById('sidebarNav').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+// Demo chart
+const ctx = document.getElementById('demoChart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['-15','-10','-5','0','5','10','15','20','25','30','35','40','45','50'],
+    datasets: [{
+      label: 'R-134a',
+      data: [0.7,2.4,4.5,7.0,9.9,13.3,17.2,21.7,26.8,32.6,39.2,46.6,55.0,64.4],
+      borderColor: '#00b4d8',
+      backgroundColor: 'rgba(0,180,216,0.1)',
+      fill: true,
+      tension: 0.4,
+      pointRadius: 3,
+      pointBackgroundColor: '#00b4d8'
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { labels: { color: '#e0e8f0' } } },
+    scales: {
+      x: { title: { display: true, text: 'Temperature (°C)', color: '#8899aa' }, ticks: { color: '#8899aa' }, grid: { color: 'rgba(42,58,74,0.5)' } },
+      y: { title: { display: true, text: 'Pressure (PSIG)', color: '#8899aa' }, ticks: { color: '#8899aa' }, grid: { color: 'rgba(42,58,74,0.5)' } }
+    }
+  }
+});
+</script>
+</body>
+</html>

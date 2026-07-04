@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mockup — Pico CSS</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  /* Dark theme */
+  :root {
+    --pico-background-color: #0f1923;
+    --pico-card-background-color: #1a2a3a;
+    --pico-muted-border-color: #2a3a4a;
+    --pico-primary: #00b4d8;
+    --pico-primary-hover: #0077b6;
+    --pico-color: #e0e8f0;
+    --pico-muted-color: #8899aa;
+  }
+
+  /* Layout */
+  .app-layout { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+  /* Sidebar */
+  .app-sidebar {
+    background: #1a2a3a; border-right: 1px solid #2a3a4a;
+    padding: 0; display: flex; flex-direction: column; overflow-y: auto;
+  }
+  .sidebar-header { padding: 16px; border-bottom: 1px solid #2a3a4a; display: flex; align-items: center; gap: 10px; }
+  .sidebar-header .brand-icon { font-size: 1.6em; }
+  .sidebar-header .brand-title { font-weight: 700; font-size: 0.9em; }
+  .sidebar-header .brand-sub { font-size: 0.7em; color: var(--pico-muted-color); }
+  .nav-group-label { font-size: 0.65em; text-transform: uppercase; letter-spacing: 0.12em; color: #556677; padding: 14px 16px 4px; font-weight: 700; }
+  .nav-link {
+    display: block; padding: 8px 16px; color: var(--pico-muted-color);
+    text-decoration: none; font-size: 0.88em; border-radius: 6px; margin: 1px 8px;
+    transition: all 0.15s;
+  }
+  .nav-link:hover { color: var(--pico-color); background: rgba(0,180,216,0.08); }
+  .nav-link.active { color: #fff; background: linear-gradient(135deg, #0077b6, #00b4d8); font-weight: 600; }
+  .sidebar-footer { padding: 12px; border-top: 1px solid #2a3a4a; text-align: center; font-size: 0.7em; color: #556677; margin-top: auto; }
+
+  /* Top bar */
+  .app-topbar {
+    background: #1a2a3a; border-bottom: 1px solid #2a3a4a;
+    padding: 10px 20px; display: flex; align-items: center; gap: 12px;
+  }
+  .app-topbar .brand { font-weight: 700; }
+
+  /* Ref pills */
+  .ref-pills { display: flex; margin-left: auto; }
+  .ref-pill {
+    padding: 6px 14px; background: rgba(0,0,0,0.2); border: 1px solid #2a3a4a;
+    color: var(--pico-muted-color); cursor: pointer; font-size: 0.82em; font-weight: 600;
+    transition: all 0.15s;
+  }
+  .ref-pill:first-child { border-radius: 6px 0 0 6px; }
+  .ref-pill:last-child { border-radius: 0 6px 6px 0; }
+  .ref-pill.active { background: linear-gradient(135deg, #0077b6, #00b4d8); color: #fff; border-color: #00b4d8; }
+  .ref-pill:hover:not(.active) { color: var(--pico-color); border-color: var(--pico-primary); }
+  .lang-pill { border-radius: 6px; margin-left: 8px; }
+
+  /* Content */
+  .app-content { padding: 20px 24px; overflow-y: auto; }
+
+  /* Info boxes */
+  .info-box {
+    background: rgba(0,0,0,0.2); border-left: 3px solid #00b4d8;
+    border-radius: 6px; padding: 10px 14px;
+  }
+  .info-box .info-label { font-size: 0.7em; color: var(--pico-muted-color); text-transform: uppercase; }
+  .info-box .info-value { font-size: 1.05em; font-weight: 600; }
+
+  /* Result display */
+  .result-display {
+    background: rgba(0,0,0,0.2); border: 1px solid #2a3a4a;
+    border-radius: 8px; padding: 14px;
+  }
+  .result-display .result-label { font-size: 0.8em; color: var(--pico-muted-color); }
+  .result-display .result-value { font-size: 1.8em; font-weight: 700; color: #00b4d8; }
+  .result-display .result-unit { font-size: 0.5em; font-weight: 400; color: var(--pico-muted-color); }
+
+  /* Slider card */
+  .slider-card {
+    background: var(--pico-card-background-color); border: 1px solid #2a3a4a;
+    border-radius: 10px; padding: 16px;
+  }
+  .slider-card label { font-size: 0.85em; color: var(--pico-muted-color); }
+  .slider-card input[type="range"] { accent-color: #00b4d8; }
+  .slider-card .slider-row { display: flex; align-items: center; gap: 10px; }
+  .slider-card .slider-input {
+    width: 60px; padding: 6px; background: rgba(0,0,0,0.3);
+    border: 1px solid #2a3a4a; border-radius: 4px; color: var(--pico-color); text-align: center;
+  }
+  .slider-card .slider-unit { font-size: 0.8em; color: var(--pico-muted-color); }
+
+  /* Chart */
+  .chart-container { height: 350px; }
+
+  /* Card */
+  .app-card {
+    background: var(--pico-card-background-color); border: 1px solid #2a3a4a;
+    border-radius: 10px;
+  }
+  .app-card header { background: transparent; border-bottom: 1px solid #2a3a4a; }
+
+  /* Table */
+  table { --pico-border-color: #2a3a4a; }
+  thead { background: rgba(0,119,182,0.2); }
+
+  /* Alert */
+  .alert-success {
+    background: rgba(42,157,143,0.15); border: 1px solid #2a9d8f;
+    border-radius: 6px; padding: 8px 12px; font-size: 0.85em;
+  }
+
+  /* Grid helpers */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+  /* Hamburger */
+  .hamburger-btn { display: none; background: none; border: none; color: var(--pico-color); font-size: 1.4em; cursor: pointer; padding: 4px; }
+
+  /* Mobile */
+  .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 100; }
+  .sidebar-overlay.open { display: block; }
+  @media (max-width: 900px) {
+    .app-layout { grid-template-columns: 1fr; }
+    .app-sidebar { position: fixed; left: -260px; top: 0; bottom: 0; z-index: 101; transition: left 0.3s ease; width: 260px; }
+    .app-sidebar.open { left: 0; }
+    .hamburger-btn { display: block; }
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .grid-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="app-layout">
+  <div class="sidebar-overlay" id="overlay" onclick="toggleNav()"></div>
+
+  <!-- Sidebar -->
+  <nav class="app-sidebar" id="sidebarNav">
+    <div class="sidebar-header">
+      <span class="brand-icon">❄️</span>
+      <div>
+        <div class="brand-title">AC Refrigerant</div>
+        <div class="brand-sub">Guide & Calculator</div>
+      </div>
+    </div>
+
+    <div class="nav-group-label">🚗 Vehicle</div>
+    <a class="nav-link active">🔍 Vehicle Lookup</a>
+
+    <div class="nav-group-label">📖 Reference</div>
+    <a class="nav-link">ℹ️ Overview</a>
+    <a class="nav-link">📊 PT Chart</a>
+    <a class="nav-link">📊 Compare</a>
+
+    <div class="nav-group-label">🔧 Tools</div>
+    <a class="nav-link">🔧 Calculators</a>
+    <a class="nav-link">🎯 Target Pressures</a>
+    <a class="nav-link">🔧 System Calc</a>
+
+    <div class="nav-group-label">📐 System</div>
+    <a class="nav-link">📐 System Diagram</a>
+
+    <div class="nav-group-label">🛠️ Help</div>
+    <a class="nav-link">📋 Instructions</a>
+    <a class="nav-link">⚠️ Issues</a>
+    <a class="nav-link">🧹 Maintenance</a>
+    <a class="nav-link">📖 Common Knowledge</a>
+
+    <div class="sidebar-footer">Data from NIST thermodynamic library</div>
+  </nav>
+
+  <!-- Main -->
+  <div style="display:flex;flex-direction:column;min-height:100vh;">
+    <div class="app-topbar">
+      <button class="hamburger-btn" onclick="toggleNav()">☰</button>
+      <span class="brand">❄️ AC Refrigerant Guide</span>
+      <div class="ref-pills">
+        <span class="ref-pill active">R-134a</span>
+        <span class="ref-pill">R-22</span>
+        <span class="ref-pill">R-410A</span>
+        <span class="ref-pill">R-32</span>
+        <span class="ref-pill lang-pill">🌐 عربي</span>
+      </div>
+    </div>
+
+    <div class="app-content">
+      <div style="max-width:900px;">
+        <h2 style="color:#00b4d8;margin-bottom:4px;">📊 Pressure-Temperature Chart</h2>
+        <p style="color:var(--pico-muted-color);font-size:0.85em;margin-bottom:16px;">R-134a saturation curve. Use the sliders below to look up values.</p>
+
+        <article>
+          <div style="padding:16px;" class="chart-container"><canvas id="demoChart"></canvas></div>
+        </article>
+
+        <div class="grid-2" style="margin-top:16px;">
+          <div class="slider-card">
+            <label>🌡️ Temperature → Pressure</label>
+            <div class="slider-row">
+              <input type="range" min="-15" max="80" value="25" style="flex:1;">
+              <input type="number" value="25" class="slider-input">
+              <span class="slider-unit">°C</span>
+            </div>
+            <div class="result-display" style="margin-top:12px;">
+              <div class="result-label">Saturation Pressure</div>
+              <div class="result-value">72.5 <span class="result-unit">PSIG</span></div>
+            </div>
+            <div class="alert-success" style="margin-top:10px;">✅ Ideal evaporator range</div>
+          </div>
+
+          <div class="slider-card">
+            <label>🔵 Pressure → Temperature</label>
+            <div class="slider-row">
+              <input type="range" min="0" max="300" value="70" style="flex:1;">
+              <input type="number" value="70" class="slider-input">
+              <span class="slider-unit">PSIG</span>
+            </div>
+            <div class="result-display" style="margin-top:12px;">
+              <div class="result-label">Saturation Temperature</div>
+              <div class="result-value">24.1 <span class="result-unit">°C</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-4" style="margin-top:16px;">
+          <div class="info-box"><div class="info-label">Type</div><div class="info-value">HFC</div></div>
+          <div class="info-box"><div class="info-label">Safety Class</div><div class="info-value">A1</div></div>
+          <div class="info-box"><div class="info-label">GWP</div><div class="info-value">1430</div></div>
+          <div class="info-box"><div class="info-label">Boiling Point</div><div class="info-value">-26.1°C</div></div>
+        </div>
+
+        <article style="margin-top:16px;">
+          <header style="padding:12px 16px;"><strong>📊 Operating Pressures</strong></header>
+          <div style="padding:12px;">
+            <table>
+              <thead><tr><th>Ambient</th><th>Low Side</th><th>High Side</th></tr></thead>
+              <tbody>
+                <tr><td>24°C</td><td style="color:#2a9d8f">25–35</td><td>140–170</td></tr>
+                <tr><td>32°C</td><td style="color:#f4a261">30–40</td><td>185–220</td></tr>
+                <tr><td>40°C</td><td style="color:#f4a261">35–45</td><td>230–270</td></tr>
+                <tr><td>48°C 🔥</td><td style="color:#e63946">38–48</td><td>280–320</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleNav() {
+  document.getElementById('sidebarNav').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('open');
+}
+const ctx = document.getElementById('demoChart').getContext('2d');
+new Chart(ctx, {
+  type: 'line',
+  data: {
+    labels: ['-15','-10','-5','0','5','10','15','20','25','30','35','40','45','50'],
+    datasets: [{
+      label: 'R-134a',
+      data: [0.7,2.4,4.5,7.0,9.9,13.3,17.2,21.7,26.8,32.6,39.2,46.6,55.0,64.4],
+      borderColor: '#00b4d8', backgroundColor: 'rgba(0,180,216,0.1)',
+      fill: true, tension: 0.4, pointRadius: 3, pointBackgroundColor: '#00b4d8'
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { labels: { color: '#e0e8f0' } } },
+    scales: {
+      x: { title: { display: true, text: 'Temperature (°C)', color: '#8899aa' }, ticks: { color: '#8899aa' }, grid: { color: 'rgba(42,58,74,0.5)' } },
+      y: { title: { display: true, text: 'Pressure (PSIG)', color: '#8899aa' }, ticks: { color: '#8899aa' }, grid: { color: 'rgba(42,58,74,0.5)' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
