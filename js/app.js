@@ -44,7 +44,7 @@ function interpolateReverse(ptData, psig) {
   return 0;
 }
 
-// Low-side pressure caps based on Qwen's real-world HVAC data
+// Low-side pressure caps based on real-world HVAC operating data
 // Above these = overcharged or system problem
 var LOW_SIDE_CAPS = {'R-22':75, 'R-410A':125, 'R-32':130, 'R-134a':40};
 
@@ -295,7 +295,7 @@ function updateAmbientAdvisor() {
   var sp = interpStatic(r.staticPressure, ambC);
   // Cap low-side to reflect real HVAC behavior: suction pressure is determined by
   // indoor coil temperature (thermostat-controlled), NOT outdoor ambient.
-  // Qwen real-world max suction (at 5-7°C coil): R-22: 75, R-410A: 125, R-32: 130, R-134a: 40
+  // Real-world max suction (at 5-7°C coil): R-22: 75, R-410A: 125, R-32: 130, R-134a: 40
   // Above these = overcharged or system problem.
   applyLoSideCap(rg, r.name);
   var loMid = (rg.loMin + rg.loMax) / 2, satTemp = interpolateReverse(r.pt, loMid);

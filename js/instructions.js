@@ -8,8 +8,9 @@ window.INSTRUCTIONS = {
         <div class="step"><strong>Connect the gauge and refrigerant.</strong> Screw the charging hose onto the R-134a can. Connect the quick-disconnect fitting to the low-pressure port. Do not puncture the can yet.</div>
         <div class="step"><strong>Start the vehicle and AC.</strong> Start the engine, let it idle. Set AC to Maximum Cold, blower to Highest speed, turn on Recirculation mode. Open car doors/windows for ventilation.</div>
         <div class="step"><strong>Puncture the can and monitor pressure.</strong> Squeeze the trigger to puncture the seal. Add refrigerant in short bursts (5–10 seconds), releasing between bursts to let pressure stabilize. Keep the can <strong>upright</strong> to add gas, not liquid.</div>
-        <div class="step"><strong>Check the pressure chart.</strong> Use the PT chart on this page. At 25°C ambient, low-side should be roughly 35–45 PSIG. At 35°C+, expect 40–50 PSIG. Add until the gauge enters the optimal range.</div>
-        <div class="step"><strong>Check vent temperature.</strong> Place a thermometer in the center vent. A properly charged system should blow 2°C–7°C. Listen for short-cycling (compressor clicking on/off rapidly) — this indicates low charge, overcharge, or a failing pressure switch.</div>
+        <div class="step"><strong>Measure ambient temperature.</strong> Before checking pressures, measure the outdoor air temperature at the condenser (front of car, through the grille, in the shade). This is your "ambient" — it determines what pressures to expect. Do NOT measure on the dashboard or in direct sunlight.</div>
+        <div class="step"><strong>Check the pressure chart.</strong> Use the operating pressure table on this page. At 25°C ambient, low-side should be roughly 29–39 PSIG. At 35°C ambient, expect 34–44 PSIG. At 45°C+ (Saudi summer), expect 37–47 PSIG. Add until the gauge enters the optimal range for your ambient temperature.</div>
+        <div class="step"><strong>Check vent temperature.</strong> Place a thermometer in the center vent. A properly charged system should blow 2°C–7°C below the indoor temperature. If pressure is in range but air is still warm: check if the compressor is engaging, condenser fan is working, and condenser coil is clean.</div>
         <div class="step"><strong>Disconnect and finish.</strong> Stop when pressure is correct. Close the valve to trap remaining refrigerant. Quickly disconnect from the low-pressure port. Replace the dust cap. <strong>Do not overcharge</strong> — it's better to be slightly undercharged.</div>
       </div>
       <div class="warn-box"><div class="title">🔧 Troubleshooting</div>
@@ -23,8 +24,9 @@ window.INSTRUCTIONS = {
         <div class="step"><strong>وصّل المانومتر والمبرد.</strong> اربط خرطوم الشحن على عبوة R-134a. وصّل وصلة الفصل السريع بمنفذ الضغط المنخفض. لا تخترق العبوة بعد.</div>
         <div class="step"><strong>شغّل السيارة والمكيف.</strong> أشغّل المحرك واتركه يدور على الخامل. اضبط المكيف على أقصى تبريد، المروحة على أعلى سرعة، شغّل وضع إعادة التدوير. افتح أبواب/نوافذ السيارة للتهوية.</div>
         <div class="step"><strong>اخترق العبوة وراقب الضغط.</strong> اضغط الزناد لاختام الإحكام. أضف المبرد على دفعات قصيرة (5-10 ثوانٍ)، مع التوقف بين الدفعات لاستقرار الضغط. ابقِ العبوة <strong>عمودية</strong> لإضافة غاز وليس سائل.</div>
-        <div class="step"><strong>افحص مخطط الضغط.</strong> استخدم مخطط PT في هذه الصفحة. عند 25°C محيط، الجانب المنخفض يكون تقريباً 35-45 PSIG. عند 35°C+، توقع 40-50 PSIG. أضف حتى يدخل المانومتر النطاق الأمثل.</div>
-        <div class="step"><strong>افحص حرارة الفتحة.</strong> ضع ترمومتر في فتحة التهوية المركزية. نظام مشحون جيداً يجب أن يهب 2°C-7°C. استمع للتشغيل المتكرر (الضاغط ينقر يعمل/يتوقف بسرعة) — يشير لشحن منخفض أو زائد أو مفتاح ضغط خربان.</div>
+        <div class="step"><strong>افحص حرارة المحيط.</strong> قبل فحص الضغوط، اقيس حرارة الهواء الخارجي عند المكثف (أمام السيارة، عبر الشبكة، في الظل). هذه هي "حرارة المحيط" — تحدد الضغوط المتوقعة. لا تقيس على لوحة القيادة أو تحت أشعة الشمس المباشرة.</div>
+        <div class="step"><strong>افحص مخطط الضغط.</strong> استخدم جدول ضغوط التشغيل في هذه الصفحة. عند 25°C محيط، الجانب المنخفض يكون تقريباً 29-39 PSIG. عند 35°C محيط، توقع 34-44 PSIG. عند 45°C+ (صيف السعودية)، توقع 37-47 PSIG. أضف حتى يدخل المانومتر النطاق الأمثل لحرارة محيطك.</div>
+        <div class="step"><strong>افحص حرارة الفتحة.</strong> ضع ترمومتر في فتحة التهوية المركزية. نظام مشحون جيداً يجب أن يهب 2°C-7°C تحت حرارة الداخل. إذا كان الضغط ضمن النطاق لكن الهواء لا يزال دافئاً: افحص إذا كان الضاغط يعمل، ومروحة المكثف تعمل، وملف المكثف نظيف.</div>
         <div class="step"><strong>افصل وأنهِ.</strong> توقف عندما يكون الضغط صحيحاً. أغلق الصمام لحبس المبرد المتبقي. افصل بسرعة من منفذ الضغط المنخفض. أعد غطاء الغبار. <strong>لا تفرط في الشحن</strong> — الأفضل أن يكون أقل قليلاً.</div>
       </div>
       <div class="warn-box"><div class="title">🔧 استكشاف الأخطاء</div>
@@ -68,7 +70,8 @@ window.INSTRUCTIONS = {
         <div class="step"><strong>Verify the system uses R-410A.</strong> Check the nameplate. R-410A systems use different service port fittings (larger, 1/2" Acme).</div>
         <div class="step"><strong>Use R-410A-rated manifold gauges.</strong> Connect the blue hose to the suction port and red hose to the liquid port. Ensure hoses rated for 800+ PSIG.</div>
         <div class="step"><strong>Start the system.</strong> Let it run 10–15 minutes to stabilize. Record suction and discharge pressures.</div>
-        <div class="step"><strong>Compare to PT chart.</strong> At 25°C ambient, typical suction is ~87 PSIG and discharge is ~250 PSIG. At 35°C, suction ~107 PSIG, discharge ~320 PSIG.</div>
+        <div class="step"><strong>Measure ambient temperature.</strong> Measure outdoor air temperature at the condenser (in the shade). This determines expected pressures.</div>
+        <div class="step"><strong>Compare to operating pressure table.</strong> At 25°C ambient, typical suction is ~115–130 PSIG and discharge is ~260–305 PSIG. At 35°C, suction ~120–138 PSIG, discharge ~370–435 PSIG. At 48°C+ (T3 climate), suction ~125–145 PSIG, discharge ~490–555 PSIG.</div>
         <div class="step"><strong>Calculate subcooling (TXV systems).</strong> Target subcooling is typically 8–14°F (4–8°C) per manufacturer data plate.</div>
         <div class="step"><strong>Charge as liquid.</strong> R-410A is a blend. Invert the cylinder to charge as liquid. Use a scale to weigh in the charge.</div>
         <div class="step"><strong>Verify and disconnect.</strong> Confirm subcooling/superheat within specs. <strong>Do not vent R-410A.</strong></div>
@@ -81,7 +84,8 @@ window.INSTRUCTIONS = {
         <div class="step"><strong>تأكد أن النظام يستخدم R-410A.</strong> افحص اللوحة. أنظمة R-410A تستخدم وصلات خدمة مختلفة (أكبر، 1/2 إنش أكمي).</div>
         <div class="step"><strong>استخدم مانومتر مُصنّف لـ R-410A.</strong> وصّل الخرطوم الأزرق بمنفذ الشفط والأحمر بمنفذ السائل. تأكد أن الخراطيم مُصنّفة لـ 800+ PSIG.</div>
         <div class="step"><strong>شغّل النظام.</strong> اتركه يعمل 10-15 دقيقة للاستقرار. سجّل ضغوط الشفط والتفريغ.</div>
-        <div class="step"><strong>قارن مع مخطط PT.</strong> عند 25°C محيط، الشفط النموذجي ~87 PSIG والتفريغ ~250 PSIG. عند 35°C، شفط ~107 PSIG، تفريغ ~320 PSIG.</div>
+        <div class="step"><strong>افحص حرارة المحيط.</strong> اقيس حرارة الهواء الخارجي عند المكثف (في الظل). هذه تحدد الضغوط المتوقعة.</div>
+        <div class="step"><strong>قارن مع جدول ضغوط التشغيل.</strong> عند 25°C محيط، الشفط النموذجي ~115-130 PSIG والتفريغ ~260-305 PSIG. عند 35°C، شفط ~120-138 PSIG، تفريغ ~370-435 PSIG. عند 48°C+ (مناخ T3)، شفط ~125-145 PSIG، تفريغ ~490-555 PSIG.</div>
         <div class="step"><strong>احسب التبريد تحت التشبع (أنظمة TXV).</strong> هدف التبريد تحت التشبع عادة 8-14°F (4-8°C) حسب لوحة بيانات الشركة.</div>
         <div class="step"><strong>اشحن كسائل.</strong> R-410A مزيج. اقلب الأسطوانة للشحن كسائل. استخدم ميزان لوزن الشحن.</div>
         <div class="step"><strong>تأكد وافصل.</strong> تأكد أن التبريد تحت التشبع/السوبريتي ضمن المواصفات. <strong>لا تفرّغ R-410A.</strong></div>
@@ -97,7 +101,8 @@ window.INSTRUCTIONS = {
         <div class="step"><strong>Use R-32-rated equipment.</strong> Manifold gauges, hoses, and recovery equipment must be rated for R-32 pressures and A2L compatibility.</div>
         <div class="step"><strong>Check for leaks before charging.</strong> Use an electronic leak detector rated for A2L refrigerants.</div>
         <div class="step"><strong>Start the system.</strong> Let it run 10–15 minutes to stabilize. Record suction and discharge pressures.</div>
-        <div class="step"><strong>Compare to PT chart.</strong> At 25°C ambient, typical suction is ~89 PSIG and discharge is ~260 PSIG.</div>
+        <div class="step"><strong>Measure ambient temperature.</strong> Measure outdoor air temperature at the condenser (in the shade). This determines expected pressures.</div>
+        <div class="step"><strong>Compare to operating pressure table.</strong> At 25°C ambient, typical suction is ~118–135 PSIG and discharge is ~270–315 PSIG. At 35°C, suction ~122–140 PSIG, discharge ~380–445 PSIG.</div>
         <div class="step"><strong>Charge carefully.</strong> R-32 is a pure refrigerant, so it can be charged as vapor or liquid. Weigh in the charge.</div>
         <div class="step"><strong>Verify and disconnect.</strong> Confirm subcooling/superheat within specs. Check for leaks again. <strong>Do not vent R-32.</strong></div>
       </div>
@@ -110,7 +115,8 @@ window.INSTRUCTIONS = {
         <div class="step"><strong>استخدم معدات مُصنّفة لـ R-32.</strong> المانوميتر والخراطيم ومعدات الاسترداد يجب أن تكون مُصنّفة لضغوط R-32 وتوافق A2L.</div>
         <div class="step"><strong>افحص التسريبات قبل الشحن.</strong> استخدم كاشف تسريب إلكتروني مُصنّف لمبردات A2L.</div>
         <div class="step"><strong>شغّل النظام.</strong> اتركه يعمل 10-15 دقيقة للاستقرار. سجّل ضغوط الشفط والتفريغ.</div>
-        <div class="step"><strong>قارن مع مخطط PT.</strong> عند 25°C محيط، الشفط النموذجي ~89 PSIG والتفريغ ~260 PSIG.</div>
+        <div class="step"><strong>افحص حرارة المحيط.</strong> اقيس حرارة الهواء الخارجي عند المكثف (في الظل). هذه تحدد الضغوط المتوقعة.</div>
+        <div class="step"><strong>قارن مع جدول ضغوط التشغيل.</strong> عند 25°C محيط، الشفط النموذجي ~118-135 PSIG والتفريغ ~270-315 PSIG. عند 35°C، شفط ~122-140 PSIG، تفريغ ~380-445 PSIG.</div>
         <div class="step"><strong>اشحن بحذر.</strong> R-32 مبرد نقي، يمكن شحنه كبخار أو سائل. ازن الشحن.</div>
         <div class="step"><strong>تأكد وافصل.</strong> تأكد أن التبريد تحت التشبع/السوبريتي ضمن المواصفات. افحص التسريبات مرة أخرى. <strong>لا تفرّغ R-32.</strong></div>
       </div>

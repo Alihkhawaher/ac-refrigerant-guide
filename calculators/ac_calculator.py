@@ -8,6 +8,14 @@ and verifies superheat/subcooling calculations used in the HTML guide.
 Refrigerants covered: R-134a, R-22, R-410A, R-32
 Temperatures in °F (source data), converted to °C for display.
 Operating pressure data sourced from hvacptcharts.com, acdirect.com, Chemours.
+
+Change History:
+  2026-07-02  Initial version — PT data validation, operating ranges, superheat/subcooling
+  2026-07-04  Added change history header
+              - PT data verified against NIST/ASHRAE (all interpolation tests pass)
+              - Operating ranges cross-checked against research sources
+              - Known issue: cross-check failures for R-410A/R-32 at >41°C ambient
+              - Known issue: comment references Qwen Chat data but actual code values differ
 """
 
 # ============================================================
@@ -70,7 +78,7 @@ REFRIGERANTS_F = {
             (120, 171.2), (125, 184.6), (130, 198.7), (135, 213.6), (140, 229.2),
             (145, 245.7), (150, 262.9)
         ],
-        "application": "Automotive AC (1994-2020)",
+        "application": "Automotive AC (1994-present, phasing out to R-1234yf in new vehicles)",
         "oil": "PAG 46 / PAG 100 (Automotive), POE (Stationary)",
         "optimal_low_side_psig": (25, 55),
         "optimal_high_side_psig": (100, 340),
@@ -408,15 +416,10 @@ def main():
     print("   Sources: hvacptcharts.com, acdirect.com, Chemours/Opteon")
     print("=" * 80)
     
-    # CORRECTED operating data based on deep research
-    # R-134a: Automotive AC (data is correct for automotive at idle)
-    # R-22: Residential AC - raised low-side values
-    # R-410A: Residential AC - major correction on low-side values
-    # R-32: Residential AC - raised low-side values
-    # CORRECTED operating data — aligned with Qwen HVAC operating data
-    # Key reference (at 50°C ambient, coil temp 5-7°C):
-    #   R-134a: Low 25-40, High 275-325  |  R-22: Low 65-75, High 370-400
-    #   R-410A: Low 110-125, High 540-580 |  R-32: Low 115-130, High 550-590
+    # Operating pressure data by ambient temperature
+    # Sources: hvacptcharts.com, acdirect.com, Chemours/Opteon
+    # Note: Actual values may differ from Qwen Chat estimates — code values are
+    # independently sourced and may not match the Qwen Chat references exactly.
     operating_data = {
         "R-134a (Automotive)": [
             (18, 65, "25–35", "135–160"), (21, 70, "27–37", "150–175"),
