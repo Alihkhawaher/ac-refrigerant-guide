@@ -141,6 +141,7 @@ Your site will be live at: `https://YOUR_USERNAME.github.io/YOUR_REPO/`
 | PWA with `manifest.json` and `sw.js` | ✅ Yes | Works fine, see [PWA Notes](#pwa-notes-for-github-pages) |
 | Setting `build_type=workflow` via GitHub API | ✅ Yes | Switches Pages source from branch to Actions without going to web UI |
 | `concurrency` block in workflow | ✅ Yes | Prevents two deployments running at the same time |
+| `cancel-in-progress: true` | ✅ Required | If set to `false`, failed deployments block subsequent ones with "Deployment failed, try again later" |
 
 ---
 
@@ -187,6 +188,23 @@ Look at `"build_type"` — it must be `"workflow"`, not `"legacy"`.
 ### Symptom: `actions/deploy-pages` step hangs for several minutes
 
 **Not a bug.** The deploy step contacts GitHub's Pages API and waits for confirmation. It normally takes 2–5 minutes. The old legacy method took 10+ minutes and then timed out — the new method actually completes.
+
+---
+
+### Symptom: "Deployment failed, try again later" on every attempt
+
+**Cause:** `concurrency.cancel-in-progress` is set to `false` and a previous deployment failed. The failed deployment holds the concurrency lock, blocking all subsequent deployments.
+
+**Fix:** Set `cancel-in-progress: true` in the workflow:
+```yaml
+concurrency:
+  group: "pages"
+  cancel-in-progress: true    # NOT false
+```
+
+**Why:** With `cancel-in-progress: false`, GitHub waits for the previous run to complete before starting a new one. If the previous run failed without releasing the lock, all new runs will also fail with the same generic error. Setting it to `true` cancels the stale lock and allows fresh deployments.
+
+**Verified:** This fix was confirmed on 2026-07-05 — 4 consecutive failures with `false`, immediate success after changing to `true`.
 
 ---
 

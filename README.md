@@ -6,9 +6,11 @@ A comprehensive, offline-capable Progressive Web App (PWA) for automotive and re
 
 ## Features
 
-- **Interactive PT Charts** — Pressure-temperature curves for all 4 refrigerants
+- **Welcome Dashboard** — Quick Pressure Reference for all 4 refrigerants at a glance, with interactive ambient temperature slider
+- **Vehicle AC Lookup** — Search 3,378+ vehicles by make/model/year to find refrigerant type, quantity, and compressor oil (powered by sql.js)
+- **Interactive PT Charts** — Pressure-temperature curves for all 4 refrigerants (Chart.js)
 - **Diagnostic Calculators** — Superheat, subcooling, ambient advisor
-- **System Diagram** — Interactive P&ID with zoom, pan, and component details
+- **System Diagram** — Interactive P&ID with zoom, pan, drag, and component details
 - **Troubleshooting Guide** — Per-refrigerant issues with symptoms, causes, and fixes
 - **Oil Diagnostics** — Color and smell-based compressor oil assessment
 - **System Sizing Calculator** — Room size to BTU/h with component specs
@@ -16,6 +18,14 @@ A comprehensive, offline-capable Progressive Web App (PWA) for automotive and re
 - **Bilingual** — Full English and Arabic interface (toggle with 🌐 button)
 - **Offline Support** — Works completely offline after first visit (PWA)
 - **Installable** — Add to home screen on Android, iOS, and Desktop
+
+## Tech Stack
+
+- **UI Framework:** Tailwind CSS + DaisyUI (dark theme)
+- **Charts:** Chart.js
+- **Vehicle Database:** sql.js (SQLite compiled to WebAssembly, runs in browser)
+- **Architecture:** Modular JavaScript (5 modules)
+- **Hosting:** GitHub Pages with GitHub Actions deployment
 
 ## Refrigerants Covered
 
@@ -30,31 +40,31 @@ A comprehensive, offline-capable Progressive Web App (PWA) for automotive and re
 
 ```
 /
-├── index.html              # Main HTML template
+├── index.html              # Main HTML (Tailwind + DaisyUI sidebar layout)
+├── vehicle_ac_data.db      # SQLite database (3,378 vehicles)
+├── build_vehicle_db.py     # Python script to rebuild vehicle DB from source
 ├── manifest.json           # PWA manifest
 ├── sw.js                   # Service Worker (offline caching)
-├── css/
-│   └── styles.css          # All styling
 ├── js/
 │   ├── data.js             # Refrigerant properties & PT charts
 │   ├── instructions.js     # Per-refrigerant instructions (EN/AR)
 │   ├── issues.js           # Troubleshooting & oil diagnostics
 │   ├── knowledge.js        # 29 Q&A items (EN/AR)
 │   ├── devices.js          # Component lookup tables
-│   └── app.js              # Core app logic
+│   ├── calculators.js      # Shared utilities & slider calculators
+│   ├── charts.js           # Chart.js PT & comparison charts
+│   ├── diagram.js          # SVG system diagram with interactions
+│   ├── vehicle-lookup.js   # sql.js vehicle database queries
+│   └── app.js              # Main orchestrator (nav, state, rendering)
 ├── icons/
 │   ├── icon-192.png        # PWA icon (192x192)
 │   └── icon-512.png        # PWA icon (512x512)
+├── backup/                 # Original v1 files (for reference)
+├── v2/                     # Development copy of v2
 ├── calculators/
-│   ├── ac_calculator.py    # Python validation script (PT data, operating ranges)
-│   └── ac_calculator_t3.py # T3 calculator (Wagner equation, NIST-based)
+│   ├── ac_calculator.py    # Python validation script
+│   └── ac_calculator_t3.py # T3 calculator (Wagner equation)
 └── docs/                   # Reference documentation
-    ├── AC Common Knowledge.txt
-    ├── AC Pressure-Temperature Guide.md
-    ├── Calculator Review.md
-    ├── Cross-File Review - Discrepancies & Errors.md
-    ├── SOURCES.md
-    └── from videos/        # YouTube transcript & subtitle files
 ```
 
 ## Usage
@@ -66,7 +76,25 @@ A comprehensive, offline-capable Progressive Web App (PWA) for automotive and re
 2. Click the "Install" banner that appears, or use the browser menu (⋮ → Install app)
 3. On iOS Safari: tap Share → Add to Home Screen
 
-**Local:** Open `index.html` in any modern browser — no server required.
+**Local Development:**
+```bash
+# Serve locally (needed for sql.js .db file fetching)
+python -m http.server 8080
+
+# Rebuild vehicle database from source HTML
+python build_vehicle_db.py
+```
+
+## Vehicle Database
+
+The vehicle AC refrigerant database is sourced from [database26.com](https://database26.com/refrigerant-capacity-chart-r134a-r1234yf/) and contains **3,378 entries** across **69 makes** including Volkswagen, Audi, Mercedes-Benz, Ford, Toyota, Honda, BMW, and more.
+
+**Data fields:** Make, Model, Year Range, Refrigerant Type (R134a/R1234yf), Quantity (grams), Oil Code, Oil Type, Oil Quantity (ml)
+
+**Rebuilding the database:**
+1. Save the source HTML page as `docs/database35.com.html`
+2. Run `python build_vehicle_db.py`
+3. Copy `vehicle_ac_data.db` to the repo root
 
 ## Important Notes
 
@@ -74,6 +102,7 @@ A comprehensive, offline-capable Progressive Web App (PWA) for automotive and re
 - **Both fixed orifice and TXV/EEV** — Toggle the TXV checkbox in the calculators tab
 - **Pressure data sourced from NIST** — PT charts verified against NIST/ASHRAE; T3 calculator uses Wagner equation (max error <1 PSIG)
 - **All pressure values in PSIG** (gage pressure) — see Common Knowledge for PSIG vs PSIA explanation
+- **Vehicle data is read-only** — sql.js queries the .db file client-side; no server-side code
 
 ## Review Status
 
