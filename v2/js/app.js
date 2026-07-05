@@ -243,17 +243,31 @@ document.querySelectorAll('#sidebarMenu a[data-nav]').forEach(function(link) {
   });
 });
 
-// Refrigerant selector
+// Refrigerant selector — shared logic
+function selectRef(refKey) {
+  currentRef = refKey;
+  // Update desktop btn-group
+  document.querySelectorAll('#refSelector button').forEach(function(b) { b.classList.remove('btn-active'); });
+  var desktopBtn = document.querySelector('#refSelector button[data-ref="' + refKey + '"]');
+  if (desktopBtn) {
+    desktopBtn.classList.add('btn-active');
+    // Sync mobile dropdown label
+    var mobileLabel = document.getElementById('refMobileLabel');
+    if (mobileLabel) mobileLabel.textContent = desktopBtn.textContent;
+  }
+  renderRefInfo();
+  var activePage = document.querySelector('[data-page]:not(.hidden)');
+  if (activePage) onPageVisible(activePage.getAttribute('data-page'));
+}
+
+// Refrigerant selector — desktop
 document.querySelectorAll('#refSelector button[data-ref]').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('#refSelector button').forEach(function(b) { b.classList.remove('btn-active'); });
-    btn.classList.add('btn-active');
-    currentRef = btn.dataset.ref;
-    renderRefInfo();
-    // Re-render visible chart/diagram pages
-    var activePage = document.querySelector('[data-page]:not(.hidden)');
-    if (activePage) onPageVisible(activePage.getAttribute('data-page'));
-  });
+  btn.addEventListener('click', function() { selectRef(btn.dataset.ref); });
+});
+
+// Refrigerant selector — mobile dropdown
+document.querySelectorAll('.ref-mobile-opt').forEach(function(opt) {
+  opt.addEventListener('click', function() { selectRef(opt.dataset.ref); });
 });
 
 // TXV toggle
