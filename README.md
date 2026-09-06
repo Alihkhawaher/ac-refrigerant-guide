@@ -7,7 +7,7 @@ A comprehensive, offline-capable Progressive Web App (PWA) for automotive and re
 ## Features
 
 - **Welcome Dashboard** — Quick Pressure Reference for all 4 refrigerants at a glance, with interactive ambient temperature slider
-- **Vehicle AC Lookup** — Search 3,378+ vehicles by make/model/year to find refrigerant type, quantity, and compressor oil (powered by sql.js)
+- **Vehicle AC Lookup** — Search 3,388+ vehicles by make/model/year to find refrigerant type, quantity, and compressor oil (powered by sql.js)
 - **Interactive PT Charts** — Pressure-temperature curves for all 4 refrigerants (Chart.js)
 - **Diagnostic Calculators** — Superheat, subcooling, ambient advisor
 - **System Diagram** — Interactive P&ID with zoom, pan, drag, and component details
@@ -41,7 +41,7 @@ A comprehensive, offline-capable Progressive Web App (PWA) for automotive and re
 ```
 /
 ├── index.html              # Main HTML (Tailwind + DaisyUI sidebar layout)
-├── vehicle_ac_data.db      # SQLite database (3,378 vehicles)
+├── vehicle_ac_data.db      # SQLite database (3,388 vehicles)
 ├── build_vehicle_db.py     # Python script to rebuild vehicle DB from source
 ├── manifest.json           # PWA manifest
 ├── sw.js                   # Service Worker (offline caching)
@@ -87,9 +87,9 @@ python build_vehicle_db.py
 
 ## Vehicle Database
 
-The vehicle AC refrigerant database is sourced from [database26.com](https://database26.com/refrigerant-capacity-chart-r134a-r1234yf/) and contains **3,378 entries** across **69 makes** including Volkswagen, Audi, Mercedes-Benz, Ford, Toyota, Honda, BMW, and more.
+The vehicle AC refrigerant database is sourced from [database26.com](https://database26.com/refrigerant-capacity-chart-r134a-r1234yf/) and contains **3,388 entries** across **69 makes** including Volkswagen, Audi, Mercedes-Benz, Ford, Toyota, Honda, BMW, and more.
 
-**Data fields:** Make, Model, Year Range, Refrigerant Type (R134a/R1234yf), Quantity (grams), Oil Code, Oil Type, Oil Quantity (ml)
+**Data fields:** Make, Model, Year Range, Refrigerant Type (R134a / R1234yf / R744 / R12), Quantity (grams), Oil Code, Oil Type, Oil Quantity (ml)
 
 **Rebuilding the database:**
 1. Save the source HTML page as `docs/database35.com.html`

@@ -18,6 +18,7 @@ description: {en:"<p>R-134a (1,1,1,2-Tetrafluoroethane) is a pure HFC refrigeran
       [48,118,175,205],[52,126,195,225],[55,131,210,240]
     ],
     superheatTarget: '5–15°F (3–8°C)', subcoolingTarget: '5–12°F (3–7°C)',
+    shTargetMinC: 3, shTargetMaxC: 8, scTargetMinC: 3, scTargetMaxC: 7,
     components: {
       lowPressureCutout: {psig: 25, label:{en:'Low Pressure Cut-Out Switch',ar:'مفتاح قطع الضغط المنخفض'}, desc:{en:'Prevents compressor from running when charge is too low (< 25 PSIG)',ar:'يمنع تشغيل الضاغط عندما يكون الشحن منخفضاً جداً (< 25 PSIG)'}},
       highPressureCutout: {psig: 450, label:{en:'High Pressure Cut-Out Switch',ar:'مفتاح قطع الضغط العالي'}, desc:{en:'Trips at ~450 PSIG to protect compressor from overpressure',ar:'يقطع عند ~450 PSIG لحماية الضاغط من الضغط الزائد'}},
@@ -43,6 +44,7 @@ description: {en:"<p>R-134a (1,1,1,2-Tetrafluoroethane) is a pure HFC refrigeran
       [48,118,235,280],[52,126,260,305],[55,131,280,325]
     ],
     superheatTarget: '8–15°F (4–8°C)', subcoolingTarget: '5–12°F (3–7°C)',
+    shTargetMinC: 4, shTargetMaxC: 8, scTargetMinC: 3, scTargetMaxC: 7,
     components: {
       lowPressureCutout: {psig: 20, label:{en:'Low Pressure Cut-Out',ar:'مفتاح قطع الضغط المنخفض'}, desc:{en:'Prevents compressor below 20 PSIG',ar:'يمنع تشغيل الضاغط تحت 20 PSIG'}},
       highPressureCutout: {psig: 430, label:{en:'High Pressure Cut-Out',ar:'مفتاح قطع الضغط العالي'}, desc:{en:'Trips at ~430 PSIG',ar:'يقطع عند ~430 PSIG'}},
@@ -56,7 +58,9 @@ description: {en:"<p>R-134a (1,1,1,2-Tetrafluoroethane) is a pure HFC refrigeran
     gwp: 2088, odp: 0, boilingC: -51.4, criticalTempC: 71.3, criticalPressPsia: 710.9, molWeight: 72.59,
     applications: {en:"Residential AC, Heat pumps, Commercial AC",ar:"تكييف منزلي، مضخات حرارة، تكييف تجاري"},
     oil: {en:"POE (Polyolester) ISO VG 32 or 46",ar:"POE (بولي إيستر) ISO VG 32 أو 46"},
-    description: {en:"<p>R-410A is a near-azeotropic HFC blend (50% R-32, 50% R-125) that has been the dominant residential AC refrigerant. It operates at significantly higher pressures than R-22 (~50% higher). Being phased out for new equipment since January 2025 (replaced by R-454B), but existing systems continue to be serviced with R-410A.</p>",ar:"<p>R-410A هو مزيج HFC شبه أزيوتروبي (50% R-32، 50% R-125) كان المبرد السائد للتكييف المنزلي. يعمل بضغوط أعلى بكثير من R-22 (~50% أعلى). يتم استبداله تدريجياً للمعدات الجديدة منذ يناير 2025 (بديله R-454B)، لكن الأنظمة الحالية تستمر في الصيانة بـ R-410A.</p>"},
+    description: {en:"<p>R-410A is a near-azeotropic HFC blend (50% R-32, 50% R-125) that has been the dominant residential AC refrigerant. It operates at significantly higher pressures than R-22 (~60–70% higher). Being phased out for new equipment since January 2025 (replaced by R-454B or R-32), but existing systems continue to be serviced with R-410A.</p>",ar:"<p>R-410A هو مزيج HFC شبه أزيوتروبي (50% R-32، 50% R-125) كان المبرد السائد للتكييف المنزلي. يعمل بضغوط أعلى بكثير من R-22 (~60–70% أعلى). يتم استبداله تدريجياً للمعدات الجديدة منذ يناير 2025 (بديله R-454B أو R-32)، لكن الأنظمة الحالية تستمر في الصيانة بـ R-410A.</p>"},
+    superheatTarget: '8–15°F (4–8°C)', subcoolingTarget: '8–14°F (4–8°C)',
+    shTargetMinC: 4, shTargetMaxC: 8, scTargetMinC: 4, scTargetMaxC: 8,
     pt: [[-50,5.0],[-45,7.7],[-40,10.8],[-35,14.1],[-30,17.8],[-25,21.9],[-20,26.3],[-15,31.2],[-10,36.5],[-5,42.2],[0,48.4],[5,55.2],[10,62.4],[15,70.3],[20,78.7],[25,87.7],[30,97.4],[35,107.7],[40,118.8],[45,130.6],[50,143.1],[55,156.5],[60,170.7],[65,185.8],[70,201.7],[75,218.6],[80,236.5],[85,255.4],[90,275.3],[95,296.4],[100,318.5],[105,341.9],[110,366.5],[115,392.3],[120,419.5],[125,448.0],[130,478.0],[135,509.5],[140,542.6],[145,577.4],[150,613.9]],
     operating: [[20,78,220],[25,87,250],[30,97,285],[35,107,320],[40,118,355],[45,130,390]],
     operatingRanges: [
@@ -67,7 +71,6 @@ description: {en:"<p>R-134a (1,1,1,2-Tetrafluoroethane) is a pure HFC refrigeran
       [18,65,130,155],[21,70,145,175],[24,75,165,195],[27,80,180,215],[29,85,195,235],[32,90,215,260],[35,95,240,290],[38,100,265,320],[43,110,330,385],
       [48,118,430,455],[52,126,445,470],[55,131,475,500]
     ],
-    superheatTarget: '8–15°F (4–8°C)', subcoolingTarget: '8–14°F (4–8°C)',
     components: {
       lowPressureCutout: {psig: 50, label:{en:'Low Pressure Cut-Out Switch',ar:'مفتاح قطع الضغط المنخفض'}, desc:{en:'Prevents compressor when charge is too low (< 50 PSIG)',ar:'يمنع تشغيل الضاغط عندما يكون الشحن منخفضاً جداً (< 50 PSIG)'}},
       highPressureCutout: {psig: 650, label:{en:'High Pressure Cut-Out Switch',ar:'مفتاح قطع الضغط العالي'}, desc:{en:'Trips at ~650 PSIG to protect compressor',ar:'يقطع عند ~650 PSIG لحماية الضاغط'}},
@@ -93,6 +96,7 @@ description: {en:"<p>R-134a (1,1,1,2-Tetrafluoroethane) is a pure HFC refrigeran
       [48,118,415,435],[52,126,455,480],[55,131,485,510]
     ],
     superheatTarget: '8–15°F (4–8°C)', subcoolingTarget: '8–12°F (4–7°C)',
+    shTargetMinC: 4, shTargetMaxC: 8, scTargetMinC: 4, scTargetMaxC: 7,
     components: {
       lowPressureCutout: {psig: 50, label:{en:'Low Pressure Cut-Out Switch',ar:'مفتاح قطع الضغط المنخفض'}, desc:{en:'Prevents compressor when charge is too low (< 50 PSIG)',ar:'يمنع تشغيل الضاغط عندما يكون الشحن منخفضاً جداً (< 50 PSIG)'}},
       highPressureCutout: {psig: 650, label:{en:'High Pressure Cut-Out Switch',ar:'مفتاح قطع الضغط العالي'}, desc:{en:'Trips at ~650 PSIG to protect compressor',ar:'يقطع عند ~650 PSIG لحماية الضاغط'}},

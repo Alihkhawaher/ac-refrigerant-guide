@@ -130,10 +130,12 @@ function updateSuperheat(refrigerants, currentRef, currentLang) {
   document.getElementById('shActTemp').textContent = actualTemp.toFixed(1);
   var diag = document.getElementById('shDiag');
   var isAr = currentLang === 'ar';
+  var shMin = (r.shTargetMinC !== undefined) ? r.shTargetMinC : 4;
+  var shMax = (r.shTargetMaxC !== undefined) ? r.shTargetMaxC : 8;
   if (sh < 0) diag.innerHTML = '<div class="alert alert-error py-2 mt-2"><span class="text-sm">' + (isAr ? '⚠️ <strong>خطر — سوبريتي سالب</strong> — شحن زائد، سائل يصل للضاغط.' : '⚠️ <strong>DANGER — Negative Superheat</strong> — Overcharged, liquid reaching compressor.') + '</span></div>';
-  else if (sh < 4) diag.innerHTML = '<div class="alert alert-warning py-2 mt-2"><span class="text-sm">' + (isAr ? '⚠️ <strong>سوبريتي منخفض</strong> — قريب من המלא، خطر الفيضان.' : '⚠️ <strong>Low Superheat</strong> — Near full, risk of flooding.') + '</span></div>';
-  else if (sh <= 15) diag.innerHTML = '<div class="alert alert-success py-2 mt-2"><span class="text-sm">' + (isAr ? '✅ <strong>سوبريتي طبيعي</strong> — النظام يعمل بشكل جيد.' : '✅ <strong>Normal Superheat</strong> — System operating well.') + '</span></div>';
-  else if (sh <= 25) diag.innerHTML = '<div class="alert alert-warning py-2 mt-2"><span class="text-sm">' + (isAr ? '⚠️ <strong>سوبريتي مرتفع</strong> — شحن ناقص، تبريد ضعيف.' : '⚠️ <strong>High Superheat</strong> — Undercharged, weak cooling.') + '</span></div>';
+  else if (sh < shMin) diag.innerHTML = '<div class="alert alert-warning py-2 mt-2"><span class="text-sm">' + (isAr ? '⚠️ <strong>سوبريتي منخفض</strong> — قريب من التشبع، خطر الفيضان.' : '⚠️ <strong>Low Superheat</strong> — Near full, risk of flooding.') + '</span></div>';
+  else if (sh <= shMax) diag.innerHTML = '<div class="alert alert-success py-2 mt-2"><span class="text-sm">' + (isAr ? '✅ <strong>سوبريتي طبيعي</strong> — النظام يعمل بشكل جيد.' : '✅ <strong>Normal Superheat</strong> — System operating well.') + '</span></div>';
+  else if (sh <= shMax + 10) diag.innerHTML = '<div class="alert alert-warning py-2 mt-2"><span class="text-sm">' + (isAr ? '⚠️ <strong>سوبريتي مرتفع</strong> — شحن ناقص، تبريد ضعيف.' : '⚠️ <strong>High Superheat</strong> — Undercharged, weak cooling.') + '</span></div>';
   else diag.innerHTML = '<div class="alert alert-error py-2 mt-2"><span class="text-sm">' + (isAr ? '🔴 <strong>سوبريتي مرتفع جداً</strong> — شحن ناقص بشكل حاد.' : '🔴 <strong>Very High Superheat</strong> — Severely undercharged.') + '</span></div>';
 }
 
@@ -149,10 +151,12 @@ function updateSubcooling(refrigerants, currentRef, currentLang) {
   document.getElementById('scActTemp').textContent = actualTemp.toFixed(1);
   var diag = document.getElementById('scDiag');
   var isAr = currentLang === 'ar';
+  var scMin = (r.scTargetMinC !== undefined) ? r.scTargetMinC : 3;
+  var scMax = (r.scTargetMaxC !== undefined) ? r.scTargetMaxC : 7;
   if (sc < 0) diag.innerHTML = '<div class="alert alert-error py-2 mt-2"><span class="text-sm">' + (isAr ? '⚠️ <strong>خطر — تبريد تحت تشبع سالب</strong> — شحن ناقص، غاز مبرّد في خط السائل.' : '⚠️ <strong>DANGER — Negative Subcooling</strong> — Undercharged, flash gas in liquid line.') + '</span></div>';
-  else if (sc < 3) diag.innerHTML = '<div class="alert alert-warning py-2 mt-2"><span class="text-sm">' + (isAr ? '⚠️ <strong>تبريد تحت تشبع منخفض</strong> — سائل غير كافٍ، شحن ناقص.' : '⚠️ <strong>Low Subcooling</strong> — Not enough liquid, undercharged.') + '</span></div>';
-  else if (sc <= 12) diag.innerHTML = '<div class="alert alert-success py-2 mt-2"><span class="text-sm">' + (isAr ? '✅ <strong>تبريد تحت تشبع طبيعي</strong> — شحن صحيح.' : '✅ <strong>Normal Subcooling</strong> — Properly charged.') + '</span></div>';
-  else if (sc <= 20) diag.innerHTML = '<div class="alert alert-warning py-2 mt-2"><span class="text-sm">' + (isAr ? '⚠️ <strong>تبريد تحت تشبع مرتفع</strong> — شحن زائد أو انسداد.' : '⚠️ <strong>High Subcooling</strong> — Overcharged or restricted.') + '</span></div>';
+  else if (sc < scMin) diag.innerHTML = '<div class="alert alert-warning py-2 mt-2"><span class="text-sm">' + (isAr ? '⚠️ <strong>تبريد تحت تشبع منخفض</strong> — سائل غير كافٍ، شحن ناقص.' : '⚠️ <strong>Low Subcooling</strong> — Not enough liquid, undercharged.') + '</span></div>';
+  else if (sc <= scMax) diag.innerHTML = '<div class="alert alert-success py-2 mt-2"><span class="text-sm">' + (isAr ? '✅ <strong>تبريد تحت تشبع طبيعي</strong> — شحن صحيح.' : '✅ <strong>Normal Subcooling</strong> — Properly charged.') + '</span></div>';
+  else if (sc <= scMax + 8) diag.innerHTML = '<div class="alert alert-warning py-2 mt-2"><span class="text-sm">' + (isAr ? '⚠️ <strong>تبريد تحت تشبع مرتفع</strong> — شحن زائد أو انسداد.' : '⚠️ <strong>High Subcooling</strong> — Overcharged or restricted.') + '</span></div>';
   else diag.innerHTML = '<div class="alert alert-error py-2 mt-2"><span class="text-sm">' + (isAr ? '🔴 <strong>تبريد تحت تشبع مرتفع جداً</strong> — شحن زائد بشكل كبير.' : '🔴 <strong>Very High Subcooling</strong> — Significantly overcharged.') + '</span></div>';
 }
 

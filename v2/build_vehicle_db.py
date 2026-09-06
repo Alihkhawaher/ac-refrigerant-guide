@@ -11,7 +11,7 @@ import re
 from html.parser import HTMLParser
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-HTML_PATH = os.path.join(SCRIPT_DIR, '..', 'docs', 'database35.com.html')
+HTML_PATH = os.path.join(SCRIPT_DIR, 'docs', 'database35.com.html')
 DB_PATH = os.path.join(SCRIPT_DIR, 'vehicle_ac_data.db')
 
 
@@ -59,11 +59,16 @@ def split_make_model(vehicle_model):
     # Known multi-word makes
     multi_word_makes = [
         'Alfa Romeo', 'Aston Martin', 'Land Rover', 'Mercedes-Benz',
-        'Rolls Royce', 'DS Automobiles'
+        'Rolls Royce', 'DS Automobiles', 'John Deere', 'New Holland',
+        'Massey Ferguson', 'Mc Cormick'
     ]
     for make in multi_word_makes:
         if vehicle_model.startswith(make):
             return make, vehicle_model[len(make):].strip()
+
+    # Normalize spelling variants in the source data
+    if vehicle_model.startswith('Landrover'):
+        return 'Land Rover', vehicle_model[len('Landrover'):].strip()
 
     # Default: first word is make
     parts = vehicle_model.split(' ', 1)
@@ -73,8 +78,14 @@ def split_make_model(vehicle_model):
 
 
 def parse_qty(qty_str):
-    """Parse quantity string like '525' or '700 - 750' into average grams."""
-    qty_str = qty_str.strip().replace(',', '.')
+    """Parse quantity string like '525', '700 - 750', or
+    '2 condensors: 1600' (notes: 1600 g) into grams."""
+    qty_str = qty_str.strip()
+    # Handle annotation forms like "2 condensors: 1600" -> take value after colon
+    match = re.match(r'^[^:]+:\s*([\d.,]+)\s*$', qty_str)
+    if match:
+        qty_str = match.group(1)
+    qty_str = qty_str.replace(',', '.')
     # Handle ranges like "700 - 750"
     match = re.match(r'([\d.]+)\s*[-–]\s*([\d.]+)', qty_str)
     if match:

@@ -47,7 +47,7 @@ window.INSTRUCTIONS = {
         <div class="step"><strong>Add refrigerant if needed.</strong> Connect the refrigerant cylinder to the center hose. Add slowly in short bursts.</div>
         <div class="step"><strong>Verify and disconnect.</strong> Confirm within manufacturer specs. Close valves, disconnect gauges. <strong>Do not vent R-22.</strong></div>
       </div>
-      <div class="warn-box"><div class="title">🔧 Retrofit Note</div><p style="font-size:0.88em;">If your R-22 system needs major repair, consider retrofitting to R-407C, R-438A (MO99), or R-454B.</p></div>`,
+      <div class="warn-box"><div class="title">🔧 Retrofit Note</div><p style="font-size:0.88em;">If your R-22 system needs major repair, consider retrofitting to R-407C or R-438A (MO99). (R-454B is an R-410A replacement for new equipment, not an R-22 retrofit.)</p></div>`,
     ar: `
       <div class="warn-box danger"><div class="title">⚠️ R-22 محظور الإنتاج الجديد</div><p>منذ 1 يناير 2020، تم حظر إنتاج واستيراد R-22 في أمريكا. فقط R-22 المسترد/المُعاد تدويره يُستخدم للصيانة.</p></div>
       <div class="warn-box danger"><div class="title">⚠️ السلامة أولاً</div><p>ارتدِ نظارات وقفازات السلامة. R-22 يعمل بضغوط عالية. لا تخلط R-22 مع R-410A أبداً.</p></div>
@@ -60,11 +60,11 @@ window.INSTRUCTIONS = {
         <div class="step"><strong>أضف مبرد إذا لزم.</strong> وصّل أسطوانة المبرد بالخرطوم الأوسط. أضف ببطء على دفعات قصيرة.</div>
         <div class="step"><strong>تأكد وافصل.</strong> تأكد من المطابقة لمواصفات الشركة. أغلق الصمامات، افصل المانوميتر. <strong>لا تفرّغ R-22.</strong></div>
       </div>
-      <div class="warn-box"><div class="title">🔧 ملاحظة التحويل</div><p style="font-size:0.88em;">إذا كان نظام R-22 يحتاج إصلاح كبير، فكّر في التحويل إلى R-407C أو R-438A (MO99) أو R-454B.</p></div>`
+      <div class="warn-box"><div class="title">🔧 ملاحظة التحويل</div><p style="font-size:0.88em;">إذا كان نظام R-22 يحتاج إصلاح كبير، فكّر في التحويل إلى R-407C أو R-438A (MO99). (R-454B بديل لـ R-410A للمعدات الجديدة، وليس تحويل لـ R-22.)</p></div>`
   },
   r410a: {
     en: `
-      <div class="warn-box danger"><div class="title">⚠️ HIGH PRESSURE SYSTEM</div><p>R-410A operates at approximately 50% higher pressure than R-22. Only use equipment rated for R-410A (typically 800 PSIG working pressure).</p></div>
+      <div class="warn-box danger"><div class="title">⚠️ HIGH PRESSURE SYSTEM</div><p>R-410A operates at approximately 60–70% higher pressure than R-22. Only use equipment rated for R-410A (typically 800 PSIG working pressure).</p></div>
       <div class="warn-box danger"><div class="title">⚠️ Safety First</div><p>Wear safety glasses and gloves. R-410A pressures can exceed 400 PSIG on the high side during normal operation.</p></div>
       <div class="instructions">
         <div class="step"><strong>Verify the system uses R-410A.</strong> Check the nameplate. R-410A systems use different service port fittings (larger, 1/2" Acme).</div>
@@ -76,9 +76,9 @@ window.INSTRUCTIONS = {
         <div class="step"><strong>Charge as liquid.</strong> R-410A is a blend. Invert the cylinder to charge as liquid. Use a scale to weigh in the charge.</div>
         <div class="step"><strong>Verify and disconnect.</strong> Confirm subcooling/superheat within specs. <strong>Do not vent R-410A.</strong></div>
       </div>
-      <div class="warn-box"><div class="title">🔧 Important Notes</div><p style="font-size:0.88em;"><strong>Glide:</strong> R-410A has negligible temperature glide (<0.3°C).<br><strong>Phase-out:</strong> Being phased out for new equipment (replaced by R-454B since Jan 2025).<br><strong>Do NOT mix with R-22.</strong></p></div>`,
+      <div class="warn-box"><div class="title">🔧 Important Notes</div><p style="font-size:0.88em;"><strong>Glide:</strong> R-410A has negligible temperature glide (<0.3°C).<br><strong>Phase-out:</strong> Being phased out for new equipment (replaced by R-454B or R-32 since Jan 2025).<br><strong>Do NOT mix with R-22.</strong></p></div>`,
     ar: `
-      <div class="warn-box danger"><div class="title">⚠️ نظام ضغط عالي</div><p>R-410A يعمل بضغط أعلى بحوالي 50% من R-22. استخدم فقط معدات مُصنّفة لـ R-410A (عادة 800 PSIG ضغط عمل).</p></div>
+      <div class="warn-box danger"><div class="title">⚠️ نظام ضغط عالي</div><p>R-410A يعمل بضغط أعلى بحوالي 60-70% من R-22. استخدم فقط معدات مُصنّفة لـ R-410A (عادة 800 PSIG ضغط عمل).</p></div>
       <div class="warn-box danger"><div class="title">⚠️ السلامة أولاً</div><p>ارتدِ نظارات وقفازات السلامة. ضغوط R-410A يمكن أن تتجاوز 400 PSIG على الجانب العادي أثناء التشغيل العادي.</p></div>
       <div class="instructions">
         <div class="step"><strong>تأكد أن النظام يستخدم R-410A.</strong> افحص اللوحة. أنظمة R-410A تستخدم وصلات خدمة مختلفة (أكبر، 1/2 إنش أكمي).</div>
@@ -90,7 +90,7 @@ window.INSTRUCTIONS = {
         <div class="step"><strong>اشحن كسائل.</strong> R-410A مزيج. اقلب الأسطوانة للشحن كسائل. استخدم ميزان لوزن الشحن.</div>
         <div class="step"><strong>تأكد وافصل.</strong> تأكد أن التبريد تحت التشبع/السوبريتي ضمن المواصفات. <strong>لا تفرّغ R-410A.</strong></div>
       </div>
-      <div class="warn-box"><div class="title">🔧 ملاحظات مهمة</div><p style="font-size:0.88em;"><strong>الانزياح:</strong> R-410A لديه انزياح حراري ضئيل (<0.3°C).<br><strong>التوقف التدريجي:</strong> يتم استبداله للمعدات الجديدة (بديله R-454B منذ يناير 2025).<br><strong>لا تخلط مع R-22.</strong></p></div>`
+      <div class="warn-box"><div class="title">🔧 ملاحظات مهمة</div><p style="font-size:0.88em;"><strong>الانزياح:</strong> R-410A لديه انزياح حراري ضئيل (<0.3°C).<br><strong>التوقف التدريجي:</strong> يتم استبداله للمعدات الجديدة (بديله R-454B أو R-32 منذ يناير 2025).<br><strong>لا تخلط مع R-22.</strong></p></div>`
   },
   r32: {
     en: `
